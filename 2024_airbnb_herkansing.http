@@ -1,0 +1,6 @@
+@_2024_airbnb_herkansing_HostAddress = http://localhost:5154
+
+GET {{_2024_airbnb_herkansing_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
