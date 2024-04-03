@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2024_airbnb_herkansing.Data;
 
@@ -11,9 +12,11 @@ using _2024_airbnb_herkansing.Data;
 namespace _2024_airbnb_herkansing.Migrations
 {
     [DbContext(typeof(_2024_airbnb_herkansingContext))]
-    partial class _2024_airbnb_herkansingContextModelSnapshot : ModelSnapshot
+    [Migration("20240325134021_seventh_migration")]
+    partial class seventh_migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,27 +47,9 @@ namespace _2024_airbnb_herkansing.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.HasIndex("ReservationId")
-                        .IsUnique()
-                        .HasFilter("[ReservationId] IS NOT NULL");
+                    b.HasIndex("ReservationId");
 
                     b.ToTable("Customer");
-
-                    b.HasData(
-                        new
-                        {
-                            CustomerId = 1,
-                            Email = "jamesjamerson@gmail.com",
-                            FirstName = "James",
-                            LastName = "Jamerson"
-                        },
-                        new
-                        {
-                            CustomerId = 2,
-                            Email = "emilyboberson@gmail.com",
-                            FirstName = "Emily",
-                            LastName = "Boberson"
-                        });
                 });
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Image", b =>
@@ -87,36 +72,6 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.HasKey("ImageId");
 
                     b.ToTable("Image");
-
-                    b.HasData(
-                        new
-                        {
-                            ImageId = 1,
-                            Description = "Avatar of Landlord 1",
-                            IsCover = true,
-                            Url = "avatar_landlord_2.jpg"
-                        },
-                        new
-                        {
-                            ImageId = 2,
-                            Description = "Avatar of Landlord 2",
-                            IsCover = true,
-                            Url = "avatar_landlord_2.jpg"
-                        },
-                        new
-                        {
-                            ImageId = 3,
-                            Description = "Image of location 1",
-                            IsCover = true,
-                            Url = "image_location_1.jpg"
-                        },
-                        new
-                        {
-                            ImageId = 4,
-                            Description = "Image of location 2",
-                            IsCover = true,
-                            Url = "image_location_2.jpg"
-                        });
                 });
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Landlord", b =>
@@ -151,22 +106,6 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.HasIndex("LocationId");
 
                     b.ToTable("Landlord");
-
-                    b.HasData(
-                        new
-                        {
-                            LandlordId = 1,
-                            Age = 35,
-                            FirstName = "Landlord 1",
-                            LastName = "Lastname 1"
-                        },
-                        new
-                        {
-                            LandlordId = 2,
-                            Age = 45,
-                            FirstName = "Landlord 2",
-                            LastName = "Lastname 2"
-                        });
                 });
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Location", b =>
@@ -221,32 +160,6 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.HasIndex("ReservationId");
 
                     b.ToTable("Location");
-
-                    b.HasData(
-                        new
-                        {
-                            LocationId = 3,
-                            Description = "De camping ligt verscholen achter de boerderij in de polder. Op fietsafstand (5 minuten) liggen het dorpje Nieuwvliet, de zee, het strand, het bos van Erasmus en het natuurgebied de Knokkert.",
-                            Features = 4,
-                            NumberOfGuests = 2,
-                            PricePerDay = 100f,
-                            Rooms = 1,
-                            SubTitle = "Lekker veel ruimte",
-                            Title = "De Boerenhoeve",
-                            Type = 1
-                        },
-                        new
-                        {
-                            LocationId = 4,
-                            Description = "Description 4",
-                            Features = 4,
-                            NumberOfGuests = 2,
-                            PricePerDay = 100f,
-                            Rooms = 1,
-                            SubTitle = "Subtitle 4",
-                            Title = "Location 4",
-                            Type = 0
-                        });
                 });
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Reservation", b =>
@@ -274,36 +187,22 @@ namespace _2024_airbnb_herkansing.Migrations
 
                     b.HasKey("ReservationId");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerId")
+                        .IsUnique()
+                        .HasFilter("[CustomerId] IS NOT NULL");
 
                     b.HasIndex("LocationId")
                         .IsUnique()
                         .HasFilter("[LocationId] IS NOT NULL");
 
                     b.ToTable("Reservation");
-
-                    b.HasData(
-                        new
-                        {
-                            ReservationId = 1,
-                            Discount = 0f,
-                            EndDate = new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Local),
-                            StartDate = new DateTime(2024, 3, 26, 0, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            ReservationId = 2,
-                            Discount = 0f,
-                            EndDate = new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Local),
-                            StartDate = new DateTime(2024, 3, 26, 0, 0, 0, 0, DateTimeKind.Local)
-                        });
                 });
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Customer", b =>
                 {
                     b.HasOne("_2024_airbnb_herkansing.Models.Reservation", "Reservations")
-                        .WithOne()
-                        .HasForeignKey("_2024_airbnb_herkansing.Models.Customer", "ReservationId");
+                        .WithMany()
+                        .HasForeignKey("ReservationId");
 
                     b.Navigation("Reservations");
                 });
@@ -347,8 +246,8 @@ namespace _2024_airbnb_herkansing.Migrations
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Reservation", b =>
                 {
                     b.HasOne("_2024_airbnb_herkansing.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
+                        .WithOne()
+                        .HasForeignKey("_2024_airbnb_herkansing.Models.Reservation", "CustomerId");
 
                     b.HasOne("_2024_airbnb_herkansing.Models.Location", "Location")
                         .WithOne()

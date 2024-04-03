@@ -16,7 +16,7 @@ namespace _2024_airbnb_herkansing.Models
         public Location? Locations { get; set; }
     }
 
-        public static class LandlordSeed
+       /* public static class LandlordSeed
         {
             public static Landlord[] GetLandlords()
             {
@@ -39,7 +39,7 @@ namespace _2024_airbnb_herkansing.Models
                     },
                 ];              
             }
-        }
+        }*/
     }
 
 

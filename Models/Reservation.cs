@@ -17,7 +17,7 @@ namespace _2024_airbnb_herkansing.Models
         public float Discount { get; set; }
     }
 
-    public static class ReservationSeed
+    /*public static class ReservationSeed
     {
         public static Reservation[] GetReservations()
         {
@@ -43,5 +43,5 @@ namespace _2024_airbnb_herkansing.Models
             ];
 
         }
-    }
+    }*/
 }

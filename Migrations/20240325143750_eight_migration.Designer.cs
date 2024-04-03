@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2024_airbnb_herkansing.Data;
 
@@ -11,9 +12,11 @@ using _2024_airbnb_herkansing.Data;
 namespace _2024_airbnb_herkansing.Migrations
 {
     [DbContext(typeof(_2024_airbnb_herkansingContext))]
-    partial class _2024_airbnb_herkansingContextModelSnapshot : ModelSnapshot
+    [Migration("20240325143750_eight_migration")]
+    partial class eight_migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,22 +154,6 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.HasIndex("LocationId");
 
                     b.ToTable("Landlord");
-
-                    b.HasData(
-                        new
-                        {
-                            LandlordId = 1,
-                            Age = 35,
-                            FirstName = "Landlord 1",
-                            LastName = "Lastname 1"
-                        },
-                        new
-                        {
-                            LandlordId = 2,
-                            Age = 45,
-                            FirstName = "Landlord 2",
-                            LastName = "Lastname 2"
-                        });
                 });
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Location", b =>
@@ -221,32 +208,6 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.HasIndex("ReservationId");
 
                     b.ToTable("Location");
-
-                    b.HasData(
-                        new
-                        {
-                            LocationId = 3,
-                            Description = "De camping ligt verscholen achter de boerderij in de polder. Op fietsafstand (5 minuten) liggen het dorpje Nieuwvliet, de zee, het strand, het bos van Erasmus en het natuurgebied de Knokkert.",
-                            Features = 4,
-                            NumberOfGuests = 2,
-                            PricePerDay = 100f,
-                            Rooms = 1,
-                            SubTitle = "Lekker veel ruimte",
-                            Title = "De Boerenhoeve",
-                            Type = 1
-                        },
-                        new
-                        {
-                            LocationId = 4,
-                            Description = "Description 4",
-                            Features = 4,
-                            NumberOfGuests = 2,
-                            PricePerDay = 100f,
-                            Rooms = 1,
-                            SubTitle = "Subtitle 4",
-                            Title = "Location 4",
-                            Type = 0
-                        });
                 });
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Reservation", b =>

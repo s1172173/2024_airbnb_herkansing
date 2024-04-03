@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2024_airbnb_herkansing.Data;
 
@@ -11,9 +12,11 @@ using _2024_airbnb_herkansing.Data;
 namespace _2024_airbnb_herkansing.Migrations
 {
     [DbContext(typeof(_2024_airbnb_herkansingContext))]
-    partial class _2024_airbnb_herkansingContextModelSnapshot : ModelSnapshot
+    [Migration("20240325144447_ninth_migration")]
+    partial class ninth_migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,7 +228,7 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.HasData(
                         new
                         {
-                            LocationId = 3,
+                            LocationId = 1,
                             Description = "De camping ligt verscholen achter de boerderij in de polder. Op fietsafstand (5 minuten) liggen het dorpje Nieuwvliet, de zee, het strand, het bos van Erasmus en het natuurgebied de Knokkert.",
                             Features = 4,
                             NumberOfGuests = 2,
@@ -237,14 +240,14 @@ namespace _2024_airbnb_herkansing.Migrations
                         },
                         new
                         {
-                            LocationId = 4,
+                            LocationId = 2,
                             Description = "Description 4",
                             Features = 4,
                             NumberOfGuests = 2,
                             PricePerDay = 100f,
                             Rooms = 1,
                             SubTitle = "Subtitle 4",
-                            Title = "Location 4",
+                            Title = "Location 2",
                             Type = 0
                         });
                 });

@@ -47,7 +47,7 @@ namespace _2024_airbnb_herkansing.Models
         House
     }
 
-    public static class LocationSeed
+   /* public static class LocationSeed
     {
         public static Location[] GetLocations()
         {
@@ -85,5 +85,5 @@ namespace _2024_airbnb_herkansing.Models
                 }
             ];
         }
-    }
+    }*/
 }

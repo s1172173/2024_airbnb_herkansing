@@ -11,7 +11,7 @@ namespace _2024_airbnb_herkansing.Models
         public bool? IsCover { get; set; }
     }
 
-    public static class ImageSeed
+   /* public static class ImageSeed
     {
         public static Image[] GetImages()
         {
@@ -46,6 +46,6 @@ namespace _2024_airbnb_herkansing.Models
                 },
             ];
 
-        }
-    }
+        }*/
+    //}
 }

@@ -14,7 +14,7 @@ namespace _2024_airbnb_herkansing.Models
         public Reservation? Reservations { get; set; }
     }
 
-    public static class CustomerSeed
+    /*public static class CustomerSeed
     {
         public static Customer[] GetCustomers()
         {
@@ -37,5 +37,5 @@ namespace _2024_airbnb_herkansing.Models
                 },
             ];
         }
-    }
+    }*/
 }
