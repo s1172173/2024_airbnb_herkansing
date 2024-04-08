@@ -1,4 +1,5 @@
 ﻿using _2024_airbnb_herkansing.DTOs;
+using _2024_airbnb_herkansing.DTOs.v2;
 using _2024_airbnb_herkansing.Models;
 using AutoMapper;
 
@@ -9,6 +10,7 @@ namespace _2024_airbnb_herkansing
          public MapperProfile()
         {
             CreateMap<Location, LocationDTO>();
+            CreateMap<Location, LocationDTOV2>();
         }
     }
 }

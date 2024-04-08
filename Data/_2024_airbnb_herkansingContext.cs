@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using _2024_airbnb_herkansing.Models;
+using _2024_airbnb_herkansing.Models.v2;
 
 namespace _2024_airbnb_herkansing.Data
 {
@@ -8,23 +9,16 @@ namespace _2024_airbnb_herkansing.Data
         public _2024_airbnb_herkansingContext(DbContextOptions<_2024_airbnb_herkansingContext> options)
             : base(options)
         {
+
         }
 
         public DbSet<_2024_airbnb_herkansing.Models.Landlord> Landlord { get; set; } = default!;
         public DbSet<_2024_airbnb_herkansing.Models.Location> Location { get; set; } = default!;
         public DbSet<_2024_airbnb_herkansing.Models.Image> Image { get; set; } = default!;
-        //public DbSet<_2024_airbnb_herkansing.Models.Customer> Customer { get; set; } = default!;
+        public DbSet<_2024_airbnb_herkansing.Models.Customer> Customer { get; set; } = default!;
         public DbSet<_2024_airbnb_herkansing.Models.Reservation> Reservation { get; set; } = default!;
 
-       /* protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Landlord>().HasData(LandlordSeed.GetLandlords());
-            modelBuilder.Entity<Location>().HasData(LocationSeed.GetLocations());
-            modelBuilder.Entity<Image>().HasData(ImageSeed.GetImages());
-            modelBuilder.Entity<Customer>().HasData(CustomerSeed.GetCustomers());
-            modelBuilder.Entity<Reservation>().HasData(ReservationSeed.GetReservations());
-        }
-*/
+       
       
             // Add a new Seed method
             protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,16 +29,21 @@ namespace _2024_airbnb_herkansing.Data
 
             private void Seed(ModelBuilder modelBuilder)
             {
-            // Add your seed data here
+            modelBuilder.Entity<Customer>()
+                .HasMany(c => c.Reservations)
+                .WithOne(r => r.Customer)
+                .HasForeignKey(r => r.CustomerId);
+
+
 
             modelBuilder.Entity<Customer>().HasData(
-                  new Customer
-                  {
-                      CustomerId = 1,
-                      FirstName = "James",
-                      LastName = "Jamerson",
-                      Email = "jamesjamerson@gmail.com",
-                  },
+                new Customer
+                {
+                    CustomerId = 1,
+                    FirstName = "James",
+                    LastName = "Jamerson",
+                    Email = "jamesjamerson@gmail.com",
+                },
                 new Customer
                 {
                     CustomerId = 2,
@@ -54,20 +53,26 @@ namespace _2024_airbnb_herkansing.Data
                 }
             );
 
+
+
+
+
             modelBuilder.Entity<Reservation>().HasData(
                  new Reservation
                  {
                      ReservationId = 1,
                      StartDate = DateTime.Today.AddDays(1),
                      EndDate = DateTime.Today.AddDays(7),
-                     Discount = 0
+                     Discount = 0,
+                     CustomerId = 1
                  },
                 new Reservation
                 {
                     ReservationId = 2,
                     StartDate = DateTime.Today.AddDays(1),
                     EndDate = DateTime.Today.AddDays(7),
-                    Discount = 0
+                    Discount = 0,
+                    CustomerId = 2
                 }
                 );
 
@@ -150,5 +155,6 @@ namespace _2024_airbnb_herkansing.Data
             );
 
             }
+        public DbSet<LocationV2> LocationV2 { get; set; } = default!;
     }
 }

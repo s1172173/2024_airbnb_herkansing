@@ -39,14 +39,7 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReservationId")
-                        .HasColumnType("int");
-
                     b.HasKey("CustomerId");
-
-                    b.HasIndex("ReservationId")
-                        .IsUnique()
-                        .HasFilter("[ReservationId] IS NOT NULL");
 
                     b.ToTable("Customer");
 
@@ -249,6 +242,58 @@ namespace _2024_airbnb_herkansing.Migrations
                         });
                 });
 
+            modelBuilder.Entity("_2024_airbnb_herkansing.Models.LocationV2", b =>
+                {
+                    b.Property<int>("LocationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LocationId"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Features")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LanlordId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfGuests")
+                        .HasColumnType("int");
+
+                    b.Property<float>("PricePerDay")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("ReservationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rooms")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("LocationId");
+
+                    b.HasIndex("ImageId");
+
+                    b.HasIndex("LanlordId");
+
+                    b.HasIndex("ReservationId");
+
+                    b.ToTable("LocationV2");
+                });
+
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Reservation", b =>
                 {
                     b.Property<int>("ReservationId")
@@ -286,26 +331,19 @@ namespace _2024_airbnb_herkansing.Migrations
                         new
                         {
                             ReservationId = 1,
+                            CustomerId = 1,
                             Discount = 0f,
-                            EndDate = new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Local),
-                            StartDate = new DateTime(2024, 3, 26, 0, 0, 0, 0, DateTimeKind.Local)
+                            EndDate = new DateTime(2024, 4, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            StartDate = new DateTime(2024, 4, 9, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             ReservationId = 2,
+                            CustomerId = 2,
                             Discount = 0f,
-                            EndDate = new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Local),
-                            StartDate = new DateTime(2024, 3, 26, 0, 0, 0, 0, DateTimeKind.Local)
+                            EndDate = new DateTime(2024, 4, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            StartDate = new DateTime(2024, 4, 9, 0, 0, 0, 0, DateTimeKind.Local)
                         });
-                });
-
-            modelBuilder.Entity("_2024_airbnb_herkansing.Models.Customer", b =>
-                {
-                    b.HasOne("_2024_airbnb_herkansing.Models.Reservation", "Reservations")
-                        .WithOne()
-                        .HasForeignKey("_2024_airbnb_herkansing.Models.Customer", "ReservationId");
-
-                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Landlord", b =>
@@ -344,10 +382,31 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.Navigation("Reservations");
                 });
 
+            modelBuilder.Entity("_2024_airbnb_herkansing.Models.LocationV2", b =>
+                {
+                    b.HasOne("_2024_airbnb_herkansing.Models.Image", "Images")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
+
+                    b.HasOne("_2024_airbnb_herkansing.Models.Landlord", "Landlord")
+                        .WithMany()
+                        .HasForeignKey("LanlordId");
+
+                    b.HasOne("_2024_airbnb_herkansing.Models.Reservation", "Reservations")
+                        .WithMany()
+                        .HasForeignKey("ReservationId");
+
+                    b.Navigation("Images");
+
+                    b.Navigation("Landlord");
+
+                    b.Navigation("Reservations");
+                });
+
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Reservation", b =>
                 {
                     b.HasOne("_2024_airbnb_herkansing.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Reservations")
                         .HasForeignKey("CustomerId");
 
                     b.HasOne("_2024_airbnb_herkansing.Models.Location", "Location")
@@ -357,6 +416,11 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("_2024_airbnb_herkansing.Models.Customer", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

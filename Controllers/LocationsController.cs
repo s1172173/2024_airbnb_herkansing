@@ -7,9 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using _2024_airbnb_herkansing.Data;
 using _2024_airbnb_herkansing.Models;
+using Asp.Versioning;
 
 namespace _2024_airbnb_herkansing.Controllers
 {
+    /// <summary>
+    /// Controller for managing locations.
+    /// </summary>
+    [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ApiController]
     public class LocationsController : ControllerBase
@@ -21,14 +26,21 @@ namespace _2024_airbnb_herkansing.Controllers
             _context = context;
         }
 
-        // GET: api/Locations
+        /// <summary>
+        /// Retrieves all locations.
+        /// </summary>
+        /// <returns>A list of locations.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocation()
         {
             return await _context.Location.ToListAsync();
         }
 
-        // GET: api/Locations/5
+        /// <summary>
+        /// Retrieves a specific location by ID.
+        /// </summary>
+        /// <param name="id">The ID of the location to retrieve.</param>
+        /// <returns>The requested location.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Location>> GetLocation(int id)
         {
@@ -42,17 +54,22 @@ namespace _2024_airbnb_herkansing.Controllers
             return location;
         }
 
-        // GET: api/Locations/GetAll
+        /// <summary>
+        /// Retrieves all locations.
+        /// </summary>
+        /// <returns>A list of all locations.</returns>
         [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<Location>>> GetAllLocations()
         {
             return await _context.Location.ToListAsync();
         }
 
-
-
-        // PUT: api/Locations/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Updates a location.
+        /// </summary>
+        /// <param name="id">The ID of the location to update.</param>
+        /// <param name="location">The updated location data.</param>
+        /// <returns>No content if successful.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLocation(int id, Location location)
         {
@@ -82,8 +99,11 @@ namespace _2024_airbnb_herkansing.Controllers
             return NoContent();
         }
 
-        // POST: api/Locations
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Creates a new location.
+        /// </summary>
+        /// <param name="location">The location to create.</param>
+        /// <returns>A newly created location.</returns>
         [HttpPost]
         public async Task<ActionResult<Location>> PostLocation(Location location)
         {
@@ -93,7 +113,11 @@ namespace _2024_airbnb_herkansing.Controllers
             return CreatedAtAction("GetLocation", new { id = location.LocationId }, location);
         }
 
-        // DELETE: api/Locations/5
+        /// <summary>
+        /// Deletes a location.
+        /// </summary>
+        /// <param name="id">The ID of the location to delete.</param>
+        /// <returns>No content if successful.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLocation(int id)
         {

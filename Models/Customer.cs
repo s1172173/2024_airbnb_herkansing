@@ -11,7 +11,7 @@ namespace _2024_airbnb_herkansing.Models
         public string? LastName { get; set; }
         public string? Email { get; set; }
         [ForeignKey("ReservationId")]
-        public Reservation? Reservations { get; set; }
+        public List<Reservation> Reservations { get; set; }
     }
 
     /*public static class CustomerSeed

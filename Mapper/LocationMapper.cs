@@ -18,12 +18,6 @@ namespace _2024_airbnb_herkansing.Mapper
                     LandlordAvatarURL = location.Landlord,
                 };
         }
-
-
-        /*public LocationDTO Map(Microsoft.CodeAnalysis.Location location)
-        {
-            throw new NotImplementedException();
-        }*/
     }
 }
 
