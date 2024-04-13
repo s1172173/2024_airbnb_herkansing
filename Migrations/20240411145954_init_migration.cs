@@ -52,15 +52,14 @@ namespace _2024_airbnb_herkansing.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    ImageId = table.Column<int>(type: "int", nullable: true),
-                    LocationId = table.Column<int>(type: "int", nullable: true)
+                    AvatarId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Landlord", x => x.LandlordId);
                     table.ForeignKey(
-                        name: "FK_Landlord_Image_ImageId",
-                        column: x => x.ImageId,
+                        name: "FK_Landlord_Image_AvatarId",
+                        column: x => x.AvatarId,
                         principalTable: "Image",
                         principalColumn: "ImageId");
                 });
@@ -80,8 +79,7 @@ namespace _2024_airbnb_herkansing.Migrations
                     Features = table.Column<int>(type: "int", nullable: true),
                     ImageId = table.Column<int>(type: "int", nullable: true),
                     PricePerDay = table.Column<float>(type: "real", nullable: false),
-                    ReservationId = table.Column<int>(type: "int", nullable: true),
-                    LanlordId = table.Column<int>(type: "int", nullable: true)
+                    LandlordId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -92,8 +90,8 @@ namespace _2024_airbnb_herkansing.Migrations
                         principalTable: "Image",
                         principalColumn: "ImageId");
                     table.ForeignKey(
-                        name: "FK_Location_Landlord_LanlordId",
-                        column: x => x.LanlordId,
+                        name: "FK_Location_Landlord_LandlordId",
+                        column: x => x.LandlordId,
                         principalTable: "Landlord",
                         principalColumn: "LandlordId");
                 });
@@ -104,9 +102,9 @@ namespace _2024_airbnb_herkansing.Migrations
                 {
                     ReservationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LocationId = table.Column<int>(type: "int", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LocationId = table.Column<int>(type: "int", nullable: true),
                     CustomerId = table.Column<int>(type: "int", nullable: true),
                     Discount = table.Column<float>(type: "real", nullable: false)
                 },
@@ -125,51 +123,13 @@ namespace _2024_airbnb_herkansing.Migrations
                         principalColumn: "LocationId");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "LocationV2",
-                columns: table => new
-                {
-                    LocationId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SubTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Type = table.Column<int>(type: "int", nullable: true),
-                    Rooms = table.Column<int>(type: "int", nullable: false),
-                    NumberOfGuests = table.Column<int>(type: "int", nullable: false),
-                    Features = table.Column<int>(type: "int", nullable: true),
-                    ImageId = table.Column<int>(type: "int", nullable: true),
-                    PricePerDay = table.Column<float>(type: "real", nullable: false),
-                    ReservationId = table.Column<int>(type: "int", nullable: true),
-                    LanlordId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LocationV2", x => x.LocationId);
-                    table.ForeignKey(
-                        name: "FK_LocationV2_Image_ImageId",
-                        column: x => x.ImageId,
-                        principalTable: "Image",
-                        principalColumn: "ImageId");
-                    table.ForeignKey(
-                        name: "FK_LocationV2_Landlord_LanlordId",
-                        column: x => x.LanlordId,
-                        principalTable: "Landlord",
-                        principalColumn: "LandlordId");
-                    table.ForeignKey(
-                        name: "FK_LocationV2_Reservation_ReservationId",
-                        column: x => x.ReservationId,
-                        principalTable: "Reservation",
-                        principalColumn: "ReservationId");
-                });
-
             migrationBuilder.InsertData(
                 table: "Customer",
                 columns: new[] { "CustomerId", "Email", "FirstName", "LastName" },
                 values: new object[,]
                 {
-                    { 1, "jamesjamerson@gmail.com", "James", "Jamerson" },
-                    { 2, "emilyboberson@gmail.com", "Emily", "Boberson" }
+                    { 1, "john.doe@example.com", "John", "Doe" },
+                    { 2, "jane.doe@example.com", "Jane", "Doe" }
                 });
 
             migrationBuilder.InsertData(
@@ -177,28 +137,38 @@ namespace _2024_airbnb_herkansing.Migrations
                 columns: new[] { "ImageId", "Description", "IsCover", "Url" },
                 values: new object[,]
                 {
-                    { 1, "Avatar of Landlord 1", true, "avatar_landlord_2.jpg" },
-                    { 2, "Avatar of Landlord 2", true, "avatar_landlord_2.jpg" },
-                    { 3, "Image of location 1", true, "image_location_1.jpg" },
-                    { 4, "Image of location 2", true, "image_location_2.jpg" }
+                    { 1, null, true, "https://media.architecturaldigest.com/photos/5a30296738bb817b7ffe1b4b/3:2/w_1023,h_682,c_limit/Airbnb_Georgia3.jpg" },
+                    { 2, null, false, "https://www.adobe.com/nl/express/create/media_1bcd514348a568faed99e65f5249895e38b06c947.jpeg?width=400&format=jpeg&optimize=medium" },
+                    { 3, null, true, "https://www.myglobalviewpoint.com/wp-content/uploads/2020/11/Best-Airbnbs-in-the-World-Featured-Image.jpg" },
+                    { 4, null, false, "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg" },
+                    { 5, null, false, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/MaisonCausapscal.JPG/640px-MaisonCausapscal.JPG" },
+                    { 6, null, false, "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ljungris_July_2013.jpg/640px-Ljungris_July_2013.jpg" },
+                    { 7, null, false, "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" },
+                    { 8, null, true, "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2VzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" },
+                    { 9, null, false, "https://images.unsplash.com/photo-1502005097973-6a7082348e28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5zaWRlJTIwaG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" },
+                    { 10, null, true, "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG91c2VzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" },
+                    { 11, null, false, "https://images.unsplash.com/photo-1591247378418-c77f1532d2f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aW5zaWRlJTIwaG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Landlord",
-                columns: new[] { "LandlordId", "Age", "FirstName", "ImageId", "LastName", "LocationId" },
+                columns: new[] { "LandlordId", "Age", "AvatarId", "FirstName", "LastName" },
                 values: new object[,]
                 {
-                    { 1, 35, "Landlord 1", null, "Lastname 1", null },
-                    { 2, 45, "Landlord 2", null, "Lastname 2", null }
+                    { 1, 33, 4, "Peter-Jan", "Balkenende" },
+                    { 2, 20, 2, "Jan", "de Man" },
+                    { 3, 25, 7, "Sandra", "Vries" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Location",
-                columns: new[] { "LocationId", "Description", "Features", "ImageId", "LanlordId", "NumberOfGuests", "PricePerDay", "ReservationId", "Rooms", "SubTitle", "Title", "Type" },
+                columns: new[] { "LocationId", "Description", "Features", "ImageId", "LandlordId", "NumberOfGuests", "PricePerDay", "Rooms", "SubTitle", "Title", "Type" },
                 values: new object[,]
                 {
-                    { 3, "De camping ligt verscholen achter de boerderij in de polder. Op fietsafstand (5 minuten) liggen het dorpje Nieuwvliet, de zee, het strand, het bos van Erasmus en het natuurgebied de Knokkert.", 4, null, null, 2, 100f, null, 1, "Lekker veel ruimte", "De Boerenhoeve", 1 },
-                    { 4, "Description 4", 4, null, null, 2, 100f, null, 1, "Subtitle 4", "Location 4", 0 }
+                    { 1, "This modern and stylish apartment is located right in the heart of the city. With its spacious living area, fully equipped kitchen, and luxurious bathroom, it's the perfect home away from home.", 4, 1, 1, 4, 75f, 2, "Lekker veel ruimte", "De Boerenhoeve", 0 },
+                    { 2, "Escape the hustle and bustle of the city and unwind in this beautiful cottage surrounded by nature. With its cozy fireplace, comfortable bedrooms, and fully equipped kitchen, you'll have everything you need for a relaxing and enjoyable stay.", 20, 2, 2, 6, 100f, 3, "Te gek uitzicht", "Frankie's Penthouse", 1 },
+                    { 3, "Experience the ultimate beach vacation in this stunning seaside getaway. Enjoy breathtaking ocean views, luxurious amenities, and direct access to the beach.", 33, 3, 1, 2, 90f, 1, "Relax by the beach", "Seaside Getaway", 0 },
+                    { 4, "Surrounded by majestic mountains, this cozy retreat offers a peaceful and idyllic setting. Explore hiking trails, enjoy outdoor activities, or simply relax in the comfort of your mountain getaway.", 16, 4, 3, 4, 120f, 2, "Escape to nature", "Mountain Retreat", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -206,19 +176,16 @@ namespace _2024_airbnb_herkansing.Migrations
                 columns: new[] { "ReservationId", "CustomerId", "Discount", "EndDate", "LocationId", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, 1, 0f, new DateTime(2024, 4, 15, 0, 0, 0, 0, DateTimeKind.Local), null, new DateTime(2024, 4, 9, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { 2, 2, 0f, new DateTime(2024, 4, 15, 0, 0, 0, 0, DateTimeKind.Local), null, new DateTime(2024, 4, 9, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { 1, 1, 0.1f, new DateTime(2023, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2023, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 2, 0f, new DateTime(2023, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2023, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 1, 0.2f, new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2023, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 2, 0.15f, new DateTime(2023, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2023, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Landlord_ImageId",
+                name: "IX_Landlord_AvatarId",
                 table: "Landlord",
-                column: "ImageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Landlord_LocationId",
-                table: "Landlord",
-                column: "LocationId");
+                column: "AvatarId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Location_ImageId",
@@ -226,31 +193,9 @@ namespace _2024_airbnb_herkansing.Migrations
                 column: "ImageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Location_LanlordId",
+                name: "IX_Location_LandlordId",
                 table: "Location",
-                column: "LanlordId",
-                unique: true,
-                filter: "[LanlordId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Location_ReservationId",
-                table: "Location",
-                column: "ReservationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocationV2_ImageId",
-                table: "LocationV2",
-                column: "ImageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocationV2_LanlordId",
-                table: "LocationV2",
-                column: "LanlordId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LocationV2_ReservationId",
-                table: "LocationV2",
-                column: "ReservationId");
+                column: "LandlordId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservation_CustomerId",
@@ -260,49 +205,17 @@ namespace _2024_airbnb_herkansing.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Reservation_LocationId",
                 table: "Reservation",
-                column: "LocationId",
-                unique: true,
-                filter: "[LocationId] IS NOT NULL");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Landlord_Location_LocationId",
-                table: "Landlord",
-                column: "LocationId",
-                principalTable: "Location",
-                principalColumn: "LocationId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Location_Reservation_ReservationId",
-                table: "Location",
-                column: "ReservationId",
-                principalTable: "Reservation",
-                principalColumn: "ReservationId");
+                column: "LocationId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Landlord_Image_ImageId",
-                table: "Landlord");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Location_Image_ImageId",
-                table: "Location");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Landlord_Location_LocationId",
-                table: "Landlord");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Reservation_Location_LocationId",
-                table: "Reservation");
+            migrationBuilder.DropTable(
+                name: "Reservation");
 
             migrationBuilder.DropTable(
-                name: "LocationV2");
-
-            migrationBuilder.DropTable(
-                name: "Image");
+                name: "Customer");
 
             migrationBuilder.DropTable(
                 name: "Location");
@@ -311,10 +224,7 @@ namespace _2024_airbnb_herkansing.Migrations
                 name: "Landlord");
 
             migrationBuilder.DropTable(
-                name: "Reservation");
-
-            migrationBuilder.DropTable(
-                name: "Customer");
+                name: "Image");
         }
     }
 }

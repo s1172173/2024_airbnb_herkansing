@@ -15,12 +15,17 @@ namespace _2024_airbnb_herkansing.Models
         public int Rooms { get; set; }
         public int NumberOfGuests { get; set; }
         public Features? Features { get; set; }
+
+        public int? ImageId { get; set; }
         [ForeignKey("ImageId")]
-        public Image? Images { get; set; }
+        public Image? Image { get; set; }
+
         public float PricePerDay { get; set; }
-        [ForeignKey("ReservationId")]
-        public Reservation? Reservations { get; set; }
-        [ForeignKey("LanlordId")]
+       
+        public List<Reservation>? Reservations { get; set; }
+
+        public int? LandlordId { get; set; }
+        [ForeignKey("LandlordId")]
         public Landlord? Landlord { get; set; }
 
 
@@ -47,43 +52,5 @@ namespace _2024_airbnb_herkansing.Models
         House
     }
 
-   /* public static class LocationSeed
-    {
-        public static Location[] GetLocations()
-        {
-            return
-            [
-                new Location
-                {
-                    LocationId = 1,
-                    Title = "De Boerenhoeve",
-                    SubTitle = "Lekker veel ruimte",
-                    Description = "De camping ligt verscholen achter de boerderij in de polder. Op fietsafstand (5 minuten) liggen het dorpje Nieuwvliet, de zee, het strand, het bos van Erasmus en het natuurgebied de Knokkert.",
-                    Type = LocationType.Cottage,
-                    Rooms = 1,
-                    NumberOfGuests = 2,
-                    Features = Features.Wifi,
-                    PricePerDay = 100,
-                    Images = new Image { ImageId = 3},
-                    Landlord =  new Landlord { LandlordId = 1 },
-                    Reservations = null,
-                },
-                new Location
-                {
-                    LocationId = 2,
-                    Title = "Location 2",
-                    SubTitle = "Subtitle 4",
-                    Description = "Description 4",
-                    Type = LocationType.Appartment,
-                    Rooms = 1,
-                    NumberOfGuests = 2,
-                    Features = Features.Wifi,
-                    PricePerDay = 100,
-                    Images = new Image { ImageId = 3 },
-                    Landlord = new Landlord { LandlordId = 2},
-                    Reservations = null,
-                }
-            ];
-        }
-    }*/
+  
 }

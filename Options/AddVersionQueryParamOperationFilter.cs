@@ -9,26 +9,38 @@ namespace _2024_airbnb_herkansing.Options
     /// </summary>
     public class AddVersionQueryParamOperationFilter : IOperationFilter
     {
-        public void Apply(OpenApiOperation operation, OperationFilterContext context)
-        {
-            var groupName = context.ApiDescription.GroupName;
-
-            if (groupName != "v2")
-                return;
-
-            if (operation.Parameters.Any(parameter => parameter.Name == "api-version"))
-                return;
-
-            operation.Parameters ??= [];
-            operation.Parameters.Add(new OpenApiParameter
+            public void Apply(OpenApiOperation operation, OperationFilterContext context)
             {
-                Name = "api-version",
-                In = ParameterLocation.Query,
-                Required = true,
-                Description = "API version. Keep it at 2",
-                Schema = new OpenApiSchema { Type = "string" },
-                Example = new OpenApiString("2")
-            });
-        }
+                // Bepaal de API-versie van de huidige operatie
+                var apiVersion = context.DocumentName;
+
+                if (apiVersion == null || apiVersion == "1.0") return;
+
+                // Voeg de api-version query parameter toe, indien nog niet aanwezig of anders dan versie 1.0
+                var parameter = operation.Parameters
+                    .FirstOrDefault(p => p.Name == "api-version" && p.In == ParameterLocation.Query);
+
+                if (parameter == null)
+                {
+                    parameter = new OpenApiParameter
+                    {
+                        Name = "api-version",
+                        In = ParameterLocation.Query,
+                        Required = true,
+                        Description = "API version",
+                        Schema = new OpenApiSchema
+                        {
+                            Type = "string"
+                        },
+                    };
+
+                    operation.Parameters.Add(parameter);
+                }
+
+                // Stel de standaardwaarde van de parameter in op de huidige API-versie
+                parameter.Example = new OpenApiString(apiVersion);
+            }
     }
-}
+
+    }
+

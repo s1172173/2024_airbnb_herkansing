@@ -1,4 +1,4 @@
-﻿using _2024_airbnb_herkansing.DTOs;
+﻿/*using _2024_airbnb_herkansing.DTOs;
 using _2024_airbnb_herkansing.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -14,7 +14,7 @@ namespace _2024_airbnb_herkansing.Mapper
                     Title = location.Title,
                     SubTitle = location.SubTitle,
                     Description = location.Description,
-                    ImageURL = location.Images,
+                    ImageURL = location.Images.Where(image => image.IsCover ==  true).First().Url,
                     LandlordAvatarURL = location.Landlord,
                 };
         }
@@ -22,3 +22,4 @@ namespace _2024_airbnb_herkansing.Mapper
 }
 
 
+*/

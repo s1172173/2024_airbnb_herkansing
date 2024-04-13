@@ -10,6 +10,9 @@ namespace _2024_airbnb_herkansing.Repositories
         Task<Location> CreateLocationAsync(Location location);
         Task UpdateLocationAsync(int id, Location location);
         Task DeleteLocationAsync(int id);
+
+        *//*Task<IEnumerable<Location>> GetAllLocations();
+        Task<Location> GetLocationById(int id);*//*
     }
 }
 */

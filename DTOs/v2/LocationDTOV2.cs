@@ -13,4 +13,6 @@ namespace _2024_airbnb_herkansing.DTOs.v2
         public float? Price { get; set; }
         public LocationType? Type { get; set; }
     }
+
+
 }

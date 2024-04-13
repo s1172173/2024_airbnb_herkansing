@@ -14,10 +14,13 @@ namespace _2024_airbnb_herkansing.Repositories
 
         public async Task<IEnumerable<Location>> GetAllLocationsAsync()
         {
-            return await _context.Location.ToListAsync();
+            return  _context.Location;
         }
 
-        
+        public Location GetLocationByIdAsync(int id)
+        {
+            return _context.Location.Find(id);
+        }
     }
 
 }
