@@ -10,6 +10,9 @@ using _2024_airbnb_herkansing.Models;
 
 namespace _2024_airbnb_herkansing.Controllers
 {
+    /// <summary>
+    /// Controller for managing landlords.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class LandlordsController : ControllerBase
@@ -21,14 +24,21 @@ namespace _2024_airbnb_herkansing.Controllers
             _context = context;
         }
 
-        // GET: api/Landlords
+        /// <summary>
+        /// Retrieves all landlords.
+        /// </summary>
+        /// <returns>A list of landlords.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Landlord>>> GetLandlord()
         {
             return await _context.Landlord.ToListAsync();
         }
 
-        // GET: api/Landlords/5
+        /// <summary>
+        /// Retrieves a specific landlord by ID.
+        /// </summary>
+        /// <param name="id">The ID of the landlord to retrieve.</param>
+        /// <returns>The requested landlord.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Landlord>> GetLandlord(int id)
         {
@@ -42,8 +52,12 @@ namespace _2024_airbnb_herkansing.Controllers
             return landlord;
         }
 
-        // PUT: api/Landlords/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Updates a landlord.
+        /// </summary>
+        /// <param name="id">The ID of the landlord to update.</param>
+        /// <param name="landlord">The updated landlord data.</param>
+        /// <returns>No content if successful.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLandlord(int id, Landlord landlord)
         {
@@ -73,8 +87,11 @@ namespace _2024_airbnb_herkansing.Controllers
             return NoContent();
         }
 
-        // POST: api/Landlords
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Creates a new landlord.
+        /// </summary>
+        /// <param name="landlord">The landlord to create.</param>
+        /// <returns>A newly created landlord.</returns>
         [HttpPost]
         public async Task<ActionResult<Landlord>> PostLandlord(Landlord landlord)
         {
@@ -84,7 +101,11 @@ namespace _2024_airbnb_herkansing.Controllers
             return CreatedAtAction("GetLandlord", new { id = landlord.LandlordId }, landlord);
         }
 
-        // DELETE: api/Landlords/5
+        /// <summary>
+        /// Deletes a landlord.
+        /// </summary>
+        /// <param name="id">The ID of the landlord to delete.</param>
+        /// <returns>No content if successful.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLandlord(int id)
         {

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using _2024_airbnb_herkansing.Data;
 using _2024_airbnb_herkansing.Models;
+using Asp.Versioning;
 
 namespace _2024_airbnb_herkansing.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ApiController]
     public class LocationsController : ControllerBase
@@ -22,7 +24,7 @@ namespace _2024_airbnb_herkansing.Controllers
         }
 
         // GET: api/Locations
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocation()
         {
             return await _context.Location.ToListAsync();
@@ -41,15 +43,6 @@ namespace _2024_airbnb_herkansing.Controllers
 
             return location;
         }
-
-        // GET: api/Locations/GetAll
-        [HttpGet("GetAll")]
-        public async Task<ActionResult<IEnumerable<Location>>> GetAllLocations()
-        {
-            return await _context.Location.ToListAsync();
-        }
-
-
 
         // PUT: api/Locations/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

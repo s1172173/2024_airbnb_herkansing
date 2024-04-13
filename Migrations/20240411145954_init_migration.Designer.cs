@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2024_airbnb_herkansing.Data;
 
@@ -11,9 +12,11 @@ using _2024_airbnb_herkansing.Data;
 namespace _2024_airbnb_herkansing.Migrations
 {
     [DbContext(typeof(_2024_airbnb_herkansingContext))]
-    partial class _2024_airbnb_herkansingContextModelSnapshot : ModelSnapshot
+    [Migration("20240411145954_init_migration")]
+    partial class init_migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +44,7 @@ namespace _2024_airbnb_herkansing.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.ToTable("Customer", (string)null);
+                    b.ToTable("Customer");
 
                     b.HasData(
                         new
@@ -79,7 +82,7 @@ namespace _2024_airbnb_herkansing.Migrations
 
                     b.HasKey("ImageId");
 
-                    b.ToTable("Image", (string)null);
+                    b.ToTable("Image");
 
                     b.HasData(
                         new
@@ -176,7 +179,7 @@ namespace _2024_airbnb_herkansing.Migrations
 
                     b.HasIndex("AvatarId");
 
-                    b.ToTable("Landlord", (string)null);
+                    b.ToTable("Landlord");
 
                     b.HasData(
                         new
@@ -249,7 +252,7 @@ namespace _2024_airbnb_herkansing.Migrations
 
                     b.HasIndex("LandlordId");
 
-                    b.ToTable("Location", (string)null);
+                    b.ToTable("Location");
 
                     b.HasData(
                         new
@@ -339,7 +342,7 @@ namespace _2024_airbnb_herkansing.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Reservation", (string)null);
+                    b.ToTable("Reservation");
 
                     b.HasData(
                         new
