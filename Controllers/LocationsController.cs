@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using _2024_airbnb_herkansing.Data;
 using _2024_airbnb_herkansing.Models;
 using Asp.Versioning;
+using _2024_airbnb_herkansing.Services;
+using AutoMapper;
 
 namespace _2024_airbnb_herkansing.Controllers
 {
@@ -17,11 +19,26 @@ namespace _2024_airbnb_herkansing.Controllers
     public class LocationsController : ControllerBase
     {
         private readonly _2024_airbnb_herkansingContext _context;
+        private readonly ISearchService _searchService;
+        private readonly IMapper _mapper;
+
+        public LocationsController(ISearchService searchService, IMapper mapper)
+        {
+            _searchService = searchService;
+            _mapper = mapper;
+        }
 
         public LocationsController(_2024_airbnb_herkansingContext context)
         {
             _context = context;
         }
+/*
+        // GET: api/Locations
+        [HttpGet("GetAll")]
+        public async Task<ActionResult<IEnumerable<Location>>> GetAll()
+        {
+            return await _searchService.GetAllLocationsAsync();
+        }*/
 
         // GET: api/Locations
         [HttpGet("GetAll")]

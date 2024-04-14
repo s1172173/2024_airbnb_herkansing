@@ -18,7 +18,8 @@ namespace _2024_airbnb_herkansing.Models
 
         public int? ImageId { get; set; }
         [ForeignKey("ImageId")]
-        public Image? Image { get; set; }
+        /*public Image? Image { get; set; }*/
+        public List<Image> Images { get; set; }
 
         public float PricePerDay { get; set; }
        
