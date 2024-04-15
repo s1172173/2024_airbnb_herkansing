@@ -40,9 +40,11 @@ namespace _2024_airbnb_herkansing.Services
             if (location == null)
                 return new NotFoundResult();
 
-            var detailsDto = _mapper.Map<GetDetailsDTO>(location);
-            return new ActionResult<GetDetailsDTO>(detailsDto);
+            var detailsDTO = _mapper.Map<GetDetailsDTO>(location);
+
+            return new ActionResult<GetDetailsDTO>(detailsDTO);
         }
+
 
         public async Task<IEnumerable<LocationDTOV2>> GetLocationPrice(CancellationToken cancellationToken)
         {
@@ -53,15 +55,65 @@ namespace _2024_airbnb_herkansing.Services
         public async Task<ActionResult<GetMaxPriceDTO>> GetMaxPrice(CancellationToken cancellationToken)
         {
             var locations = await _repository.GetAllLocationsAsync(cancellationToken);
-            var maxPrice = locations.Max(location => location.PricePerDay);
-            return new ActionResult<GetMaxPriceDTO>(new GetMaxPriceDTO { Price = (int)maxPrice });
+            var maxPriceDTO = locations.Select(location => _mapper.Map<GetMaxPriceDTO>(location));
+            var MaxPriceResultsDTO = maxPriceDTO.OrderByDescending(dto => dto.Price).FirstOrDefault();
+
+            return new ActionResult<GetMaxPriceDTO>(MaxPriceResultsDTO);
+
         }
 
         public async Task<IEnumerable<LocationDTOV2>> Search(LocationSearchDTO? obj, CancellationToken cancellationToken)
         {
-            // Implement your search logic based on the provided criteria
-            // For simplicity, let's return all locations for now
-            return await GetLocationPrice(cancellationToken);
+            var locations = await _repository.GetAllLocationsAsync(cancellationToken);
+
+            // Filter the locations based on the search criteria, if provided
+            if (obj != null)
+            {
+                if (obj.Features.HasValue)
+                {
+                    // Filter by Features
+                    locations = locations.Where(location => (int)location.Features == obj.Features.Value);
+                }
+
+                if (obj.Type.HasValue)
+                {
+                    // Filter by Type
+                    locations = locations.Where(location => (int)location.Type == obj.Type.Value);
+                }
+
+
+                if (obj.Rooms.HasValue)
+                {
+                    // Filter by Rooms
+                    locations = locations.Where(location => location.Rooms == obj.Rooms.Value);
+                }
+
+                if (obj.MinPrice.HasValue)
+                {
+                    // Filter by MinPrice
+                    locations = locations.Where(location => location.PricePerDay >= obj.MinPrice.Value);
+                }
+
+                if (obj.MaxPrice.HasValue)
+                {
+                    // Filter by MaxPrice
+                    locations = locations.Where(location => location.PricePerDay <= obj.MaxPrice.Value);
+                }
+            }
+
+            if (!(obj?.Features.HasValue ?? false) &&
+                !(obj?.Type.HasValue ?? false) &&
+                !(obj?.Rooms.HasValue ?? false) &&
+                !(obj?.MinPrice.HasValue ?? false) &&
+                !(obj?.MaxPrice.HasValue ?? false))
+            {
+                return _mapper.Map<IEnumerable<Location>, IEnumerable<LocationDTOV2>>(locations);
+            }
+
+
+            // Map the filtered locations to the DTO format
+            return _mapper.Map<IEnumerable<Location>, IEnumerable<LocationDTOV2>>(locations);
         }
+
     }
 }
