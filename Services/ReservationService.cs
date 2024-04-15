@@ -1,7 +1,6 @@
-﻿/*namespace _2024_airbnb_herkansing.Services
+﻿namespace _2024_airbnb_herkansing.Services
 {
     public class ReservationService
     {
     }
 }
-*/

@@ -1,4 +1,6 @@
 /*Herkansings project C# Advanced | Nick Bergmans/ s1172173*/
+/*Throughout the development of this project, I received assistance from Tom Sievers, an advanced C# teacher,
+as well as from AI programs such as blackbox.ai and ChatGPT.*/
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

@@ -13,14 +13,14 @@ namespace _2024_airbnb_herkansing.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Location>> GetAllLocationsAsync()
+        public async Task<IEnumerable<Location>> GetAllLocationsAsync(CancellationToken cancellationToken)
         {
-            return await _context.Location.ToListAsync();
+            return await _context.Location.ToListAsync(cancellationToken);
         }
 
-        public async Task<Location> GetLocationByIdAsync(int id)
+        public async Task<Location> GetLocationByIdAsync(int id, CancellationToken cancellationToken)
         {
-            return await _context.Location.FirstOrDefaultAsync(l => l.LocationId == id);
+            return await _context.Location.FindAsync(id);
         }
     }
 }

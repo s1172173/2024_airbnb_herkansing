@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,13 +32,13 @@ namespace _2024_airbnb_herkansing.Controllers
         {
             _context = context;
         }
-/*
+*//*
         // GET: api/Locations
         [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<Location>>> GetAll()
         {
             return await _searchService.GetAllLocationsAsync();
-        }*/
+        }*//*
 
         // GET: api/Locations
         [HttpGet("GetAll")]
@@ -125,3 +125,4 @@ namespace _2024_airbnb_herkansing.Controllers
         }
     }
 }
+*/
