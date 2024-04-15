@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2024_airbnb_herkansing.Data;
 
@@ -11,9 +12,11 @@ using _2024_airbnb_herkansing.Data;
 namespace _2024_airbnb_herkansing.Migrations
 {
     [DbContext(typeof(_2024_airbnb_herkansingContext))]
-    partial class _2024_airbnb_herkansingContextModelSnapshot : ModelSnapshot
+    [Migration("20240414110135_init_migration4")]
+    partial class init_migration4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,9 +77,6 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.Property<bool?>("IsCover")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("LandlordId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("LocationId")
                         .HasColumnType("int");
 
@@ -84,8 +84,6 @@ namespace _2024_airbnb_herkansing.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ImageId");
-
-                    b.HasIndex("LandlordId");
 
                     b.HasIndex("LocationId");
 
@@ -96,77 +94,66 @@ namespace _2024_airbnb_herkansing.Migrations
                         {
                             ImageId = 1,
                             IsCover = true,
-                            LocationId = 2,
                             Url = "https://media.architecturaldigest.com/photos/5a30296738bb817b7ffe1b4b/3:2/w_1023,h_682,c_limit/Airbnb_Georgia3.jpg"
                         },
                         new
                         {
                             ImageId = 2,
                             IsCover = false,
-                            LocationId = 2,
                             Url = "https://www.adobe.com/nl/express/create/media_1bcd514348a568faed99e65f5249895e38b06c947.jpeg?width=400&format=jpeg&optimize=medium"
                         },
                         new
                         {
                             ImageId = 3,
                             IsCover = true,
-                            LocationId = 1,
                             Url = "https://www.myglobalviewpoint.com/wp-content/uploads/2020/11/Best-Airbnbs-in-the-World-Featured-Image.jpg"
                         },
                         new
                         {
                             ImageId = 4,
                             IsCover = false,
-                            LocationId = 1,
                             Url = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
                         },
                         new
                         {
                             ImageId = 5,
                             IsCover = false,
-                            LocationId = 1,
                             Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/MaisonCausapscal.JPG/640px-MaisonCausapscal.JPG"
                         },
                         new
                         {
                             ImageId = 6,
                             IsCover = false,
-                            LocationId = 2,
                             Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ljungris_July_2013.jpg/640px-Ljungris_July_2013.jpg"
                         },
                         new
                         {
                             ImageId = 7,
                             IsCover = false,
-                            LocationId = 3,
                             Url = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 8,
                             IsCover = true,
-                            LocationId = 3,
                             Url = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2VzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 9,
                             IsCover = false,
-                            LocationId = 3,
                             Url = "https://images.unsplash.com/photo-1502005097973-6a7082348e28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5zaWRlJTIwaG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 10,
                             IsCover = true,
-                            LocationId = 4,
                             Url = "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG91c2VzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 11,
                             IsCover = false,
-                            LocationId = 4,
                             Url = "https://images.unsplash.com/photo-1591247378418-c77f1532d2f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aW5zaWRlJTIwaG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
                         },
                         new
@@ -556,17 +543,9 @@ namespace _2024_airbnb_herkansing.Migrations
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Image", b =>
                 {
-                    b.HasOne("_2024_airbnb_herkansing.Models.Landlord", "Landlord")
-                        .WithMany()
-                        .HasForeignKey("LandlordId");
-
-                    b.HasOne("_2024_airbnb_herkansing.Models.Location", "Location")
+                    b.HasOne("_2024_airbnb_herkansing.Models.Location", null)
                         .WithMany("Images")
                         .HasForeignKey("LocationId");
-
-                    b.Navigation("Landlord");
-
-                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Landlord", b =>

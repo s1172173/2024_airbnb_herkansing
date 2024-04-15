@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2024_airbnb_herkansing.Data;
 
@@ -11,9 +12,11 @@ using _2024_airbnb_herkansing.Data;
 namespace _2024_airbnb_herkansing.Migrations
 {
     [DbContext(typeof(_2024_airbnb_herkansingContext))]
-    partial class _2024_airbnb_herkansingContextModelSnapshot : ModelSnapshot
+    [Migration("20240414104433_init_migration3")]
+    partial class init_migration3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,10 +66,7 @@ namespace _2024_airbnb_herkansing.Migrations
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Image", b =>
                 {
                     b.Property<int>("ImageId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageId"));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -74,20 +74,10 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.Property<bool?>("IsCover")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("LandlordId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LocationId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ImageId");
-
-                    b.HasIndex("LandlordId");
-
-                    b.HasIndex("LocationId");
 
                     b.ToTable("Image");
 
@@ -96,161 +86,138 @@ namespace _2024_airbnb_herkansing.Migrations
                         {
                             ImageId = 1,
                             IsCover = true,
-                            LocationId = 2,
                             Url = "https://media.architecturaldigest.com/photos/5a30296738bb817b7ffe1b4b/3:2/w_1023,h_682,c_limit/Airbnb_Georgia3.jpg"
                         },
                         new
                         {
                             ImageId = 2,
                             IsCover = false,
-                            LocationId = 2,
                             Url = "https://www.adobe.com/nl/express/create/media_1bcd514348a568faed99e65f5249895e38b06c947.jpeg?width=400&format=jpeg&optimize=medium"
                         },
                         new
                         {
                             ImageId = 3,
                             IsCover = true,
-                            LocationId = 1,
                             Url = "https://www.myglobalviewpoint.com/wp-content/uploads/2020/11/Best-Airbnbs-in-the-World-Featured-Image.jpg"
                         },
                         new
                         {
                             ImageId = 4,
                             IsCover = false,
-                            LocationId = 1,
                             Url = "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
                         },
                         new
                         {
                             ImageId = 5,
                             IsCover = false,
-                            LocationId = 1,
                             Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/MaisonCausapscal.JPG/640px-MaisonCausapscal.JPG"
                         },
                         new
                         {
                             ImageId = 6,
                             IsCover = false,
-                            LocationId = 2,
                             Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Ljungris_July_2013.jpg/640px-Ljungris_July_2013.jpg"
                         },
                         new
                         {
                             ImageId = 7,
                             IsCover = false,
-                            LocationId = 3,
                             Url = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 8,
                             IsCover = true,
-                            LocationId = 3,
                             Url = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG91c2VzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 9,
                             IsCover = false,
-                            LocationId = 3,
                             Url = "https://images.unsplash.com/photo-1502005097973-6a7082348e28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5zaWRlJTIwaG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 10,
                             IsCover = true,
-                            LocationId = 4,
                             Url = "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG91c2VzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 11,
                             IsCover = false,
-                            LocationId = 4,
                             Url = "https://images.unsplash.com/photo-1591247378418-c77f1532d2f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aW5zaWRlJTIwaG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 12,
                             IsCover = true,
-                            LocationId = 5,
                             Url = "https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aG91c2VzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 13,
                             IsCover = false,
-                            LocationId = 5,
                             Url = "https://images.unsplash.com/photo-1629079448105-35ab3e5152d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGluc2lkZSUyMGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 14,
                             IsCover = true,
-                            LocationId = 6,
                             Url = "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGhvdXNlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 15,
                             IsCover = false,
-                            LocationId = 6,
                             Url = "https://images.unsplash.com/photo-1501685532562-aa6846b14a0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGluc2lkZSUyMGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 16,
                             IsCover = true,
-                            LocationId = 7,
                             Url = "https://images.unsplash.com/photo-1430285561322-7808604715df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGhvdXNlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 17,
                             IsCover = false,
-                            LocationId = 7,
                             Url = "https://images.unsplash.com/photo-1611145367596-364abefb1f9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGluc2lkZSUyMGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 18,
                             IsCover = true,
-                            LocationId = 8,
                             Url = "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGhvdXNlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 19,
                             IsCover = false,
-                            LocationId = 8,
                             Url = "https://images.unsplash.com/photo-1607582544644-f1da2a004994?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGluc2lkZSUyMGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 20,
                             IsCover = true,
-                            LocationId = 9,
                             Url = "https://images.unsplash.com/photo-1588012886079-baef0ac45fbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fGhvdXNlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 21,
                             IsCover = false,
-                            LocationId = 9,
                             Url = "https://images.unsplash.com/photo-1484301548518-d0e0a5db0fc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGluc2lkZSUyMGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 22,
                             IsCover = true,
-                            LocationId = 10,
                             Url = "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fGhvdXNlc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
                         },
                         new
                         {
                             ImageId = 23,
                             IsCover = false,
-                            LocationId = 10,
                             Url = "https://images.unsplash.com/photo-1599619351208-3e6c839d6828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGluc2lkZSUyMGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
                         });
                 });
@@ -324,6 +291,9 @@ namespace _2024_airbnb_herkansing.Migrations
                     b.Property<int?>("Features")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("LandlordId")
                         .HasColumnType("int");
 
@@ -357,6 +327,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             LocationId = 1,
                             Description = "This modern and stylish apartment is located right in the heart of the city. With its spacious living area, fully equipped kitchen, and luxurious bathroom, it's the perfect home away from home.",
                             Features = 4,
+                            ImageId = 1,
                             LandlordId = 1,
                             NumberOfGuests = 4,
                             PricePerDay = 75f,
@@ -370,6 +341,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             LocationId = 2,
                             Description = "Escape the hustle and bustle of the city and unwind in this beautiful cottage surrounded by nature. With its cozy fireplace, comfortable bedrooms, and fully equipped kitchen, you'll have everything you need for a relaxing and enjoyable stay.",
                             Features = 20,
+                            ImageId = 2,
                             LandlordId = 2,
                             NumberOfGuests = 6,
                             PricePerDay = 100f,
@@ -383,6 +355,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             LocationId = 3,
                             Description = "Experience the ultimate beach vacation in this stunning seaside getaway. Enjoy breathtaking ocean views, luxurious amenities, and direct access to the beach.",
                             Features = 33,
+                            ImageId = 3,
                             LandlordId = 1,
                             NumberOfGuests = 2,
                             PricePerDay = 90f,
@@ -396,6 +369,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             LocationId = 4,
                             Description = "Surrounded by majestic mountains, this cozy retreat offers a peaceful and idyllic setting. Explore hiking trails, enjoy outdoor activities, or simply relax in the comfort of your mountain getaway.",
                             Features = 16,
+                            ImageId = 4,
                             LandlordId = 3,
                             NumberOfGuests = 4,
                             PricePerDay = 120f,
@@ -556,17 +530,11 @@ namespace _2024_airbnb_herkansing.Migrations
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Image", b =>
                 {
-                    b.HasOne("_2024_airbnb_herkansing.Models.Landlord", "Landlord")
-                        .WithMany()
-                        .HasForeignKey("LandlordId");
-
-                    b.HasOne("_2024_airbnb_herkansing.Models.Location", "Location")
+                    b.HasOne("_2024_airbnb_herkansing.Models.Location", null)
                         .WithMany("Images")
-                        .HasForeignKey("LocationId");
-
-                    b.Navigation("Landlord");
-
-                    b.Navigation("Location");
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("_2024_airbnb_herkansing.Models.Landlord", b =>

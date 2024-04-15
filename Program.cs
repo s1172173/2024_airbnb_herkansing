@@ -1,4 +1,6 @@
 /*Herkansings project C# Advanced | Nick Bergmans/ s1172173*/
+/*Throughout the development of this project, I received assistance from Tom Sievers, an advanced C# teacher,
+as well as from AI programs such as blackbox.ai and ChatGPT.*/
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +12,8 @@ using Asp.Versioning.ApiExplorer;
 using _2024_airbnb_herkansing.Options;
 using Asp.Versioning;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using _2024_airbnb_herkansing.Repositories;
+using _2024_airbnb_herkansing.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<_2024_airbnb_herkansingContext>(options =>
@@ -20,6 +24,10 @@ builder.Services.AddControllers(options =>
 {
     options.Conventions.Add(new ApiVersionBasedGroupingConvention());
 });
+builder.Services.AddScoped<ISearchService, SearchService>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
+/*builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+builder.Services.AddScoped<IReservationService, ReservationService>();*/
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -58,6 +66,9 @@ builder.Services.AddApiVersioning(options =>
     options.ApiVersionReader = new QueryStringApiVersionReader("api-version");
 }).AddMvc();
 
+// Register the IMapper service
+builder.Services.AddAutoMapper(typeof(Program));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -68,8 +79,8 @@ if (app.Environment.IsDevelopment())
     {
         config.SwaggerEndpoint("/swagger/1.0/swagger.json", "API v1");
         config.SwaggerEndpoint("/swagger/2.0/swagger.json", "API v2");
+        app.UseCors(options => options.AllowAnyHeader().AllowAnyOrigin());
     });
-    app.UseCors(options => options.AllowAnyHeader().AllowAnyOrigin());
 }
 
 app.UseHttpsRedirection();

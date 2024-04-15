@@ -16,9 +16,12 @@ namespace _2024_airbnb_herkansing.Models
         public int NumberOfGuests { get; set; }
         public Features? Features { get; set; }
 
-        public int? ImageId { get; set; }
-        [ForeignKey("ImageId")]
-        public Image? Image { get; set; }
+        /*public int? ImageId { get; set; }
+        [ForeignKey("ImageId")]*/
+        /*public Image? Image { get; set; }*/
+
+        // I changed it to a "List" so that it becomes possible to have more then one image for a location
+        public List<Image> Images { get; set; } = new List<Image>();
 
         public float PricePerDay { get; set; }
        

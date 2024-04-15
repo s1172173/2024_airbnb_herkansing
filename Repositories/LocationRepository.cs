@@ -1,5 +1,6 @@
-﻿/*using _2024_airbnb_herkansing.Data;
+﻿using _2024_airbnb_herkansing.Data;
 using _2024_airbnb_herkansing.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace _2024_airbnb_herkansing.Repositories
 {
@@ -12,16 +13,14 @@ namespace _2024_airbnb_herkansing.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Location>> GetAllLocationsAsync()
+        public async Task<IEnumerable<Location>> GetAllLocationsAsync(CancellationToken cancellationToken)
         {
-            return  _context.Location;
+            return await _context.Location.ToListAsync(cancellationToken);
         }
 
-        public Location GetLocationByIdAsync(int id)
+        public async Task<Location> GetLocationByIdAsync(int id, CancellationToken cancellationToken)
         {
-            return _context.Location.Find(id);
+            return await _context.Location.FindAsync(id);
         }
     }
-
 }
-*/
