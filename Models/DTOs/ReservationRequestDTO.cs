@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace _2024_airbnb_herkansing.DTOs
+namespace _2024_airbnb_herkansing.Models.DTOs
 {
     public class ReservationRequestDTO
     {
@@ -11,6 +11,6 @@ namespace _2024_airbnb_herkansing.DTOs
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        
+
     }
 }

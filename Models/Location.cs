@@ -6,7 +6,9 @@ namespace _2024_airbnb_herkansing.Models
 {
     public class Location
     {
-        [Key]
+
+       // Old Location Model
+       /* [Key]
         public int LocationId { get; set; }
         public string? Title { get; set; }
         public string? SubTitle { get; set; }
@@ -16,21 +18,46 @@ namespace _2024_airbnb_herkansing.Models
         public int NumberOfGuests { get; set; }
         public Features? Features { get; set; }
 
-        /*public int? ImageId { get; set; }
+        *//*public int? ImageId { get; set; }
         [ForeignKey("ImageId")]*/
-        /*public Image? Image { get; set; }*/
+        /*public Image? Image { get; set; }*//*
 
         // I changed it to a "List" so that it becomes possible to have more then one image for a location
         public List<Image> Images { get; set; } = new List<Image>();
 
         public float PricePerDay { get; set; }
-       
+
         public List<Reservation>? Reservations { get; set; }
 
         public int? LandlordId { get; set; }
         [ForeignKey("LandlordId")]
         public Landlord? Landlord { get; set; }
+*/
 
+
+        // New Location Model
+      
+        public int Id { get; set; }
+        public string? Title { get; set; }
+        public string? SubTitle { get; set; }
+        public string? Description { get; set; }
+        
+        public int Rooms { get; set; }
+        public int NumberOfGuests { get; set; }
+        public Features Features { get; set; }
+        public LocationType Type { get; set; }
+        public virtual List<Image> Images { get; set; }
+
+        public float PricePerDay { get; set; }
+        public virtual List<Reservation>? Reservations { get; set; }
+
+        public Landlord Landlord { get; set; }
+        public Location()
+        {
+            Images = new List<Image>();
+            Reservations = new List<Reservation>();
+
+        }
 
     }
 

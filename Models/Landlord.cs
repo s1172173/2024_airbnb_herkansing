@@ -5,17 +5,22 @@ namespace _2024_airbnb_herkansing.Models
 {
     public class Landlord
     {
-        [Key]
-        public int LandlordId { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
         public int? AvatarId { get; set; }
-        [ForeignKey("AvatarId")]
-        public Image? Avatar { get; set; }
+        
+        public virtual Image? Avatar { get; set; }
 
-        public List<Location> Locations { get; set; }
+        public virtual List<Location> Locations { get; set; }
+
+        public Landlord()
+        {
+            Locations = new List<Location>();
+
+        }
     }
 }
 

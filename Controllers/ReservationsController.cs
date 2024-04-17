@@ -1,143 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using _2024_airbnb_herkansing.Data;
-using _2024_airbnb_herkansing.Models;
+using Asp.Versioning;
+using _2024_airbnb_herkansing.Services;
+using AutoMapper;
+using _2024_airbnb_herkansing.Models.DTOs;
 
+
+// All controllers are currently unable to return the data in the correct DTO format  due to a configuration error, which remains unresolved.
+// This issue causes the Airbnb site to not respond properly to any requests.
+// The code can still be checked, but testing it on the site is currently not possible.
 namespace _2024_airbnb_herkansing.Controllers
 {
-    /// <summary>
-    /// Controller for managing reservations.
-    /// </summary>
+    [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ApiController]
     public class ReservationsController : ControllerBase
     {
         private readonly _2024_airbnb_herkansingContext _context;
+        private readonly IReservationService _reservationService;
+        private readonly IMapper _mapper;
 
-        public ReservationsController(_2024_airbnb_herkansingContext context)
+        public ReservationsController(IReservationService reservationService, IMapper mapper, _2024_airbnb_herkansingContext context)
         {
+            _reservationService = reservationService;
+            _mapper = mapper;
             _context = context;
         }
 
         /// <summary>
-        /// Retrieves all reservations.
-        /// </summary>
-        /// <returns>A list of reservations.</returns>
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservation()
-        {
-            return await _context.Reservation.ToListAsync();
-        }
-
-        /// <summary>
-        /// Retrieves a specific reservation by ID.
-        /// </summary>
-        /// <param name="id">The ID of the reservation to retrieve.</param>
-        /// <returns>The requested reservation.</returns>
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Reservation>> GetReservation(int id)
-        {
-            var reservation = await _context.Reservation.FindAsync(id);
-
-            if (reservation == null)
-            {
-                return NotFound();
-            }
-
-            return reservation;
-        }
-
-        /// <summary>
-        /// Updates a reservation.
-        /// </summary>
-        /// <param name="id">The ID of the reservation to update.</param>
-        /// <param name="reservation">The updated reservation data.</param>
-        /// <returns>No content if successful.</returns>
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReservation(int id, Reservation reservation)
-        {
-            if (id != reservation.ReservationId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(reservation).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ReservationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        /// <summary>
-        /// Creates a new reservation.
-        /// </summary>
-        /// <param name="reservation">The reservation to create.</param>
-        /// <returns>A newly created reservation.</returns>
+        /// This POST method creates a reservation using the input of the DTO object. This is for week assignment 7.
+        ///</summary>
+        ///<remarks>
+        /// Sample request:
+        ///
+        ///     GET /api/Reservations/
+        ///
+        /// </remarks>
+        /// <param name="reservationRequest"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Saves a new reservation in the database</returns>
+        /// <response code="200">The reservation has been succesfully completed</response>
+        /// <response code="500">Internal server is not working properly</response>
         [HttpPost]
-        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ReservationReponseDTO> MakeReservationAsync(ReservationRequestDTO reservationRequest, CancellationToken cancellationToken)
         {
-            _context.Reservation.Add(reservation);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (ReservationExists(reservation.ReservationId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetReservation", new { id = reservation.ReservationId }, reservation);
+            return await _reservationService.MakeReservationAsync(reservationRequest, cancellationToken);
         }
 
-        /// <summary>
-        /// Deletes a reservation.
-        /// </summary>
-        /// <param name="id">The ID of the reservation to delete.</param>
-        /// <returns>No content if successful.</returns>
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReservation(int id)
-        {
-            var reservation = await _context.Reservation.FindAsync(id);
-            if (reservation == null)
-            {
-                return NotFound();
-            }
 
-            _context.Reservation.Remove(reservation);
-            await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
 
-        private bool ReservationExists(int id)
-        {
-            return _context.Reservation.Any(e => e.ReservationId == id);
-        }
+
+        
     }
 }

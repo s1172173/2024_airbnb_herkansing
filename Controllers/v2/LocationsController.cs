@@ -1,17 +1,14 @@
-﻿/*using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using _2024_airbnb_herkansing.Data;
-using _2024_airbnb_herkansing.Models;
+﻿using _2024_airbnb_herkansing.Data;
 using _2024_airbnb_herkansing.Services;
 using Asp.Versioning;
 using AutoMapper;
-using _2024_airbnb_herkansing.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using _2024_airbnb_herkansing.Models.DTOs;
 
+
+// All controllers are currently unable to return the data in the correct DTO format due to a configuration error, which remains unresolved.
+// This issue causes the Airbnb site to not respond properly to any requests.
+// The code can still be checked, but testing it on the site is currently not possible.
 namespace _2024_airbnb_herkansing.Controllers.v2
 {
     [ApiVersion("2.0")]
@@ -20,54 +17,37 @@ namespace _2024_airbnb_herkansing.Controllers.v2
     public class LocationsController : ControllerBase
     {
         private readonly _2024_airbnb_herkansingContext _context;
-      *//*  private readonly ISearchService _searchService;
+        private readonly ISearchService _searchService;
         private readonly IMapper _mapper;
 
-        public LocationsController(ISearchService searchService, IMapper mapper)
+        public LocationsController(ISearchService searchService, IMapper mapper, _2024_airbnb_herkansingContext context)
         {
             _searchService = searchService;
             _mapper = mapper;
-        }*//*
-
-        public LocationsController(_2024_airbnb_herkansingContext context)
-        {
             _context = context;
         }
 
-        // GET: api/Locations
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Location>>> GetLocation()
-        {
-            var locations = await _context.Location
-                .Include(l => l.Image)
-                .ToListAsync();
-
-            if (locations == null)
-            {
-                return NotFound();
-            }
-
-            return locations;
-        }
-
-        // GET: api/Locations
         /// <summary>
-        /// Dit endpoint geeft alle locations terug aan de hand van de structuur van weekopdracht 5
-        /// Inclusief de landlord, images en avatar
+        /// This endpoint returns all locations based on the structure of week assignment 5,
+        /// including the landlord, images, avatar, type, and price.
         /// </summary>
-        /// <returns>Alle locations in de database</returns>
+        /// <returns>All locations in the database</returns>
         /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET /api/Locations
+        ///
         /// </remarks>
-        /// <response code="200">Alle locations in de database</response>
-        /// <response code="400">De locations kunnen niet worden opgehaald door een error</response>
-        *//*[HttpGet]
+        /// <response code="200">All locations in the database</response>
+        /// <response code="400">The locations cannot be retrieved due to an error</response>
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IEnumerable<Location> GetAllLocationsAsync()
+        public async Task<IEnumerable<LocationDTOV2>> GetAllLocationsAsync(CancellationToken cancellationToken)
         {
-            return _searchService.GetAllLocationsAsync().Select(location => _mapper.Map<Location>(location));
-        }*//*
+            return (await _searchService.GetAllLocationsAsync(cancellationToken)).Select(location => _mapper.Map<LocationDTOV2>(location));
+        }
+
 
     }
 }
-*/

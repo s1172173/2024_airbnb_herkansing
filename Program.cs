@@ -3,17 +3,16 @@
 as well as from AI programs such as blackbox.ai and ChatGPT.*/
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using _2024_airbnb_herkansing.Data;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
-using Asp.Versioning.ApiExplorer;
-/*using _2024_airbnb_herkansing.Data;*/
 using _2024_airbnb_herkansing.Options;
 using Asp.Versioning;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using _2024_airbnb_herkansing.Repositories;
 using _2024_airbnb_herkansing.Services;
+using _2024_airbnb_herkansing;
+
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<_2024_airbnb_herkansingContext>(options =>
@@ -26,11 +25,17 @@ builder.Services.AddControllers(options =>
 });
 builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddScoped<ILocationRepository, LocationRepository>();
-/*builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
-builder.Services.AddScoped<IReservationService, ReservationService>();*/
+builder.Services.AddScoped<ILandlordRepository, LandlordRepository>();
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
+
+// Modified this line to specify the assembly where AutoMapper profiles are located | But This doesn't resolve the issue regarding the controller output
+builder.Services.AddAutoMapper(typeof(MapperProfile));
+builder.Services.AddAutoMapper(typeof(Program));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 //builder.Services.AddApiVersioning();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -66,8 +71,6 @@ builder.Services.AddApiVersioning(options =>
     options.ApiVersionReader = new QueryStringApiVersionReader("api-version");
 }).AddMvc();
 
-// Register the IMapper service
-builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

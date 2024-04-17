@@ -1,7 +1,7 @@
 ﻿using _2024_airbnb_herkansing.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace _2024_airbnb_herkansing.DTOs
+namespace _2024_airbnb_herkansing.Models.DTOs
 {
     public class LocationDTO
     {
