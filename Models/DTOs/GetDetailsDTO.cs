@@ -1,6 +1,6 @@
 ﻿using _2024_airbnb_herkansing.Models;
 
-namespace _2024_airbnb_herkansing.DTOs
+namespace _2024_airbnb_herkansing.Models.DTOs
 {
     public class GetDetailsDTO
     {

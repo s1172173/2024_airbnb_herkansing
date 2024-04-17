@@ -1,4 +1,4 @@
-﻿namespace _2024_airbnb_herkansing.DTOs
+﻿namespace _2024_airbnb_herkansing.Models.DTOs
 {
     public class GetMaxPriceDTO
     {

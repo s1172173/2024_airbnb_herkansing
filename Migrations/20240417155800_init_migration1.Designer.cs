@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2024_airbnb_herkansing.Data;
 
@@ -11,9 +12,11 @@ using _2024_airbnb_herkansing.Data;
 namespace _2024_airbnb_herkansing.Migrations
 {
     [DbContext(typeof(_2024_airbnb_herkansingContext))]
-    partial class _2024_airbnb_herkansingContextModelSnapshot : ModelSnapshot
+    [Migration("20240417155800_init_migration1")]
+    partial class init_migration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -528,7 +531,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             Discount = 0.1f,
                             EndDate = new DateTime(2023, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 1,
-                            StartDate = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2023, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -537,7 +540,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             Discount = 0f,
                             EndDate = new DateTime(2023, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 2,
-                            StartDate = new DateTime(2024, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2023, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -546,7 +549,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             Discount = 0.2f,
                             EndDate = new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 1,
-                            StartDate = new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2023, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -555,7 +558,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             Discount = 0.15f,
                             EndDate = new DateTime(2023, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 1,
-                            StartDate = new DateTime(2024, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2023, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 

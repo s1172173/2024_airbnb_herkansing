@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _2024_airbnb_herkansing.Data;
 
@@ -11,9 +12,11 @@ using _2024_airbnb_herkansing.Data;
 namespace _2024_airbnb_herkansing.Migrations
 {
     [DbContext(typeof(_2024_airbnb_herkansingContext))]
-    partial class _2024_airbnb_herkansingContextModelSnapshot : ModelSnapshot
+    [Migration("20240417155113_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -276,42 +279,42 @@ namespace _2024_airbnb_herkansing.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 19,
+                            Age = 40,
                             AvatarId = 1,
-                            FirstName = "Ren",
-                            LastName = "Traveller"
+                            FirstName = "John ",
+                            LastName = "Doe"
                         },
                         new
                         {
                             Id = 2,
-                            Age = 29,
+                            Age = 30,
                             AvatarId = 2,
-                            FirstName = "Bob",
-                            LastName = "Bouwer"
+                            FirstName = "Mary ",
+                            LastName = "Bane"
                         },
                         new
                         {
                             Id = 3,
-                            Age = 35,
+                            Age = 34,
                             AvatarId = 3,
-                            FirstName = "Charles ",
-                            LastName = "Xavier"
+                            FirstName = "Bruce ",
+                            LastName = "Spanner"
                         },
                         new
                         {
                             Id = 4,
                             Age = 45,
                             AvatarId = 4,
-                            FirstName = "Peter ",
-                            LastName = "Parker"
+                            FirstName = "Tony ",
+                            LastName = "Spark"
                         },
                         new
                         {
                             Id = 5,
-                            Age = 26,
+                            Age = 25,
                             AvatarId = 5,
-                            FirstName = "Iron ",
-                            LastName = "de Man"
+                            FirstName = "Harry ",
+                            LastName = "de Spotter"
                         });
                 });
 
@@ -360,131 +363,131 @@ namespace _2024_airbnb_herkansing.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "Brand new hotel in the heart of the city",
+                            Description = "Nieuw hotel in de stad",
                             Features = 36,
                             LandlordId = 1,
                             NumberOfGuests = 4,
                             PricePerDay = 74.99f,
                             Rooms = 2,
-                            SubTitle = "Just steps away from the old city center",
-                            Title = "New City Hotel",
+                            SubTitle = "met 1 stap in het oude centrum van de stad",
+                            Title = "Nieuwbouw Hotel",
                             Type = 4
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Detached house in a peaceful neighborhood surrounded by nature",
+                            Description = "Vrijstaand huis met een rustige buurt en veel natuur in de omgeving",
                             Features = 6,
                             LandlordId = 1,
                             NumberOfGuests = 6,
                             PricePerDay = 50f,
                             Rooms = 3,
-                            SubTitle = "Enjoy the beautiful greenery in this serene environment",
-                            Title = "Detached House",
+                            SubTitle = "geniet van de prachtige groene natuur in deze rustige omgeving",
+                            Title = "Vrijstaand Huis",
                             Type = 5
                         },
                         new
                         {
                             Id = 3,
-                            Description = "Large old house with a stunning lakeside location",
+                            Description = "Groot oud huis met prachtige ligging aan het meer",
                             Features = 3,
                             LandlordId = 2,
                             NumberOfGuests = 8,
                             PricePerDay = 88.5f,
                             Rooms = 4,
-                            SubTitle = "A beautiful 19th-century house by the water",
-                            Title = "Lakeside Villa",
+                            SubTitle = "Een prachtig huis uit de 19de eeuw aan het water",
+                            Title = "Villa aan het water",
                             Type = 5
                         },
                         new
                         {
                             Id = 4,
-                            Description = "Room in an apartment complex",
+                            Description = "kamer in apartementencomplex",
                             Features = 8,
                             LandlordId = 3,
                             NumberOfGuests = 2,
                             PricePerDay = 58.33f,
                             Rooms = 1,
-                            SubTitle = "Double room in Barcelona",
-                            Title = "Double Room",
+                            SubTitle = "2 persoons kamer in Barcelona",
+                            Title = "2 persoons kamer ",
                             Type = 3
                         },
                         new
                         {
                             Id = 5,
-                            Description = "Luxurious villa with a pool and spacious garden",
+                            Description = "luxeuze villa met zwembad en grote tuin",
                             Features = 28,
                             LandlordId = 4,
                             NumberOfGuests = 15,
                             PricePerDay = 399.5f,
                             Rooms = 10,
-                            SubTitle = "Perfect villa for a wonderful vacation with friends or family",
-                            Title = "Luxury Villa Milan",
+                            SubTitle = "grote villa voor een prachtige vakantie met vrienden of familie",
+                            Title = "Super villa Milaan",
                             Type = 5
                         },
                         new
                         {
                             Id = 6,
-                            Description = "Family home for starters in Almere",
+                            Description = "Eengezinswoning voor starter in Almere",
                             Features = 2,
                             LandlordId = 5,
                             NumberOfGuests = 4,
                             PricePerDay = 25f,
                             Rooms = 3,
-                            SubTitle = "A good starter home with easy commute",
-                            Title = "Almere Townhouse",
+                            SubTitle = "Een goede starters woning met goed woon/werkverkeer",
+                            Title = "Rijtjeshuis in Almere",
                             Type = 5
                         },
                         new
                         {
                             Id = 7,
-                            Description = "Villa overlooking the coast in Kijkduin",
+                            Description = "Villa met uitzicht over de kust in Kijkduin",
                             Features = 8,
                             LandlordId = 1,
                             NumberOfGuests = 8,
                             PricePerDay = 66.65f,
                             Rooms = 4,
-                            SubTitle = "Perfect for summer vacation in the Netherlands",
-                            Title = "Beachside Villa",
+                            SubTitle = "Perfect voor de zomervakantie in Nederland ",
+                            Title = "Villa aan het strand",
                             Type = 2
                         },
                         new
                         {
                             Id = 8,
-                            Description = "Historic castle in the inland of France",
+                            Description = "Historisch kasteel in de binnenlanden van Frankrijk",
                             Features = 18,
                             LandlordId = 5,
                             NumberOfGuests = 12,
                             PricePerDay = 420.1f,
                             Rooms = 8,
-                            SubTitle = "Stay here like royalty",
-                            Title = "Castle in France",
+                            SubTitle = "Verblijf hier als een koninklijke familie",
+                            Title = "Kasteel in Frankrijk",
                             Type = 5
                         },
                         new
                         {
                             Id = 9,
-                            Description = "Luxurious room in the most beautiful city in the Netherlands",
+                            Description = "Prijzige kamer in mooiste stad van Nederland",
                             Features = 4,
                             LandlordId = 1,
                             NumberOfGuests = 5,
                             PricePerDay = 500f,
                             Rooms = 2,
-                            SubTitle = "Explore Amsterdam and enjoy the city's offerings",
-                            Title = "Amsterdam Apartment",
+                            SubTitle = "Verken Amsterdam en geniet van de mogelijkheden in de stad",
+                            Title = "Appartement Amsterdam",
                             Type = 0
                         },
                         new
                         {
                             Id = 10,
-                            Description = "Old restored windmill with 4 rooms",
+                            Description = "Oude gerestaureerde molen met 4 kamers",
                             Features = 12,
                             LandlordId = 2,
                             NumberOfGuests = 8,
                             PricePerDay = 140f,
                             Rooms = 4,
-                            SubTitle = "Authentic windmill used for cheese making",
-                            Title = "Old Windmill",
+                            SubTitle = "Authentieke Molen gebruikt voor het maken van kaas",
+                            Title = "Oude Molen",
                             Type = 1
                         });
                 });
@@ -528,7 +531,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             Discount = 0.1f,
                             EndDate = new DateTime(2023, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 1,
-                            StartDate = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2023, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -537,7 +540,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             Discount = 0f,
                             EndDate = new DateTime(2023, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 2,
-                            StartDate = new DateTime(2024, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2023, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -546,7 +549,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             Discount = 0.2f,
                             EndDate = new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 1,
-                            StartDate = new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2023, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -555,7 +558,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             Discount = 0.15f,
                             EndDate = new DateTime(2023, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 1,
-                            StartDate = new DateTime(2024, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2023, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
