@@ -6,8 +6,9 @@ using _2024_airbnb_herkansing.Models.DTOs;
 
 namespace _2024_airbnb_herkansing.Services
 {
-    public interface ISearchService
+    public interface ISearchService 
     {
+        Task<IEnumerable<Location>> GetAllLocationsStandard(CancellationToken cancellationToken);
         Task<IEnumerable<Location>> GetAllLocationsAsync(CancellationToken cancellationToken);
         Task<Location> GetLocationByIdAsync(int id, CancellationToken cancellationToken);
 

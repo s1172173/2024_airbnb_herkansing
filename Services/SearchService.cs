@@ -17,6 +17,13 @@ namespace _2024_airbnb_herkansing.Services
             _mapper = mapper;
         }
 
+        // Retrieves all locations without related entities asynchronously
+        public async Task<IEnumerable<Location>> GetAllLocationsStandard(CancellationToken cancellationToken)
+        {
+            return await _repository.GetAllLocationsStandard(cancellationToken);
+
+        }
+
         // Retrieves all locations asynchronously
         public async Task<IEnumerable<Location>> GetAllLocationsAsync(CancellationToken cancellationToken)
         {
@@ -81,12 +88,37 @@ namespace _2024_airbnb_herkansing.Services
             // Filter the locations based on the search criteria, if provided
             if (obj != null)
             {
-                // Various filtering criteria
+                if (obj.Features.HasValue)
+                {
+                    var featureEnum = (Features)obj.Features.Value;
+                    locations = locations.Where(l => (l.Features & featureEnum) == featureEnum).ToList();
+                }
+
+                if (obj.Type.HasValue)
+                {
+                    locations = locations.Where(l => l.Type == (LocationType)obj.Type.Value).ToList();
+                }
+
+                if (obj.Rooms.HasValue)
+                {
+                    locations = locations.Where(l => l.Rooms >= obj.Rooms.Value).ToList();
+                }
+
+                if (obj.MinPrice.HasValue)
+                {
+                    locations = locations.Where(l => l.PricePerDay >= obj.MinPrice.Value).ToList();
+                }
+
+                if (obj.MaxPrice.HasValue)
+                {
+                    locations = locations.Where(l => l.PricePerDay <= obj.MaxPrice.Value).ToList();
+                }
             }
 
             // Map the filtered locations to the DTO format
             return _mapper.Map<IEnumerable<Location>, IEnumerable<LocationDTOV2>>(locations);
         }
+
 
         // Retrieves the unavailable dates for a specific location asynchronously
         public async Task<UnAvailableDatesDTO> GetUnavailableDatesAsync(int locationId, CancellationToken cancellationToken)

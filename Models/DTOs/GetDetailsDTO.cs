@@ -12,7 +12,8 @@ namespace _2024_airbnb_herkansing.Models.DTOs
         public float PricePerDay { get; set; }
         public LocationType Type { get; set; }
         public Features Features { get; set; }
-        public IEnumerable<Image> Images { get; set; }
+ /*       public IEnumerable<Image> Images { get; set; }*/
+        public virtual List<string>? Images {  get; set; }
         public LandlordDTO Landlord { get; set; }
     }
 }

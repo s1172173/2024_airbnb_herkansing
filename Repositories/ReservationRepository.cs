@@ -17,7 +17,6 @@ namespace _2024_airbnb_herkansing.Repositories
             _mapper = mapper;
         }
 
-        // Retrieves all reservations asynchronously, including related location and customer information
         public async Task<IEnumerable<Reservation>> GetAllReservationsAsync(CancellationToken cancellationToken)
         {
             return await _context.Reservation
@@ -26,7 +25,6 @@ namespace _2024_airbnb_herkansing.Repositories
                 .ToListAsync(cancellationToken);
         }
 
-        // Retrieves a reservation by its ID asynchronously, including related location and customer information
         public async Task<Reservation> GetReservationByIdAsync(int id, CancellationToken cancellationToken)
         {
             return await _context.Reservation
@@ -35,7 +33,6 @@ namespace _2024_airbnb_herkansing.Repositories
                 .FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
         }
 
-        // Makes a new reservation asynchronously, including creating a new customer if not exists
         public async Task<Reservation> MakeReservationAsync(ReservationRequestDTO reservationRequest, CancellationToken cancellationToken)
         {
             var customer = await _context.Customer
@@ -43,7 +40,6 @@ namespace _2024_airbnb_herkansing.Repositories
 
             if (customer == null)
             {
-                // Create a new customer if not exists
                 customer = new Customer
                 {
                     FirstName = reservationRequest.FirstName,
@@ -52,27 +48,32 @@ namespace _2024_airbnb_herkansing.Repositories
                 };
 
                 _context.Customer.Add(customer);
+                await _context.SaveChangesAsync(cancellationToken);
             }
 
-            // Map reservation request DTO to reservation entity
             var reservationEntity = _mapper.Map<Reservation>(reservationRequest);
             reservationEntity.CustomerId = customer.Id;
 
-            // Add reservation to context and save changes
+            var location = await _context.Location
+                .FirstOrDefaultAsync(l => l.Id == reservationRequest.LocationId, cancellationToken);
+
+            reservationEntity.Location = location;
+            reservationEntity.Customer = customer;
+
             _context.Reservation.Add(reservationEntity);
             await _context.SaveChangesAsync(cancellationToken);
 
             return reservationEntity;
         }
 
-        // Retrieves location by ID asynchronously, including related images and landlord information
-        public async Task<Location> GetLocationAsync(int id, CancellationToken cancellationToken)
+        public async Task<UnAvailableDatesDTO> GetUnavailableDatesAsync(int locationId, CancellationToken cancellationToken)
         {
-            return await _context.Location
-                .Include(l => l.Images)
-                .Include(l => l.Landlord)
-                .ThenInclude(l => l.Avatar)
-                .FirstOrDefaultAsync(l => l.Id == id, cancellationToken);
+            var unavailableDates = await _context.Reservation
+                .Where(r => r.LocationId == locationId)
+                .Select(r => r.StartDate ?? DateTime.MinValue)
+                .ToListAsync(cancellationToken);
+
+            return new UnAvailableDatesDTO { UnAvailableDates = unavailableDates };
         }
     }
 }

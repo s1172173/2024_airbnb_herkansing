@@ -6,10 +6,6 @@ using Asp.Versioning;
 using AutoMapper;
 using _2024_airbnb_herkansing.Models.DTOs;
 
-
-// All controllers are currently unable to return the data in the correct format due to a configuration error, which remains unresolved.
-// This issue causes the Airbnb site to not respond properly to any requests.
-// The code can still be checked, but testing it on the site is currently not possible.
 namespace _2024_airbnb_herkansing.Controllers
 {
     [ApiVersion("1.0")]
@@ -40,9 +36,9 @@ namespace _2024_airbnb_herkansing.Controllers
         /// </remarks>
         /// <param name="cancellationToken">The cancellation token.</param>
         [HttpGet("GetAll")]
-        public async Task<ActionResult<IEnumerable<Location>>> GetAllLocationsAsync(CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<Location>>> GetAllLocationsStandard(CancellationToken cancellationToken)
         {
-            var locations = await _searchService.GetAllLocationsAsync(cancellationToken);
+            var locations = await _searchService.GetAllLocationsStandard(cancellationToken);
             return Ok(locations);
         }
 
@@ -60,7 +56,7 @@ namespace _2024_airbnb_herkansing.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LocationDTO>>> GetLocation(CancellationToken cancellationToken)
         {
-            var locations = await _searchService.GetAllLocationsAsync(cancellationToken);
+            var locations = await _searchService.GetLocation(cancellationToken);
             return Ok(locations);
         }
 
