@@ -47,16 +47,23 @@ namespace _2024_airbnb_herkansing.Migrations
                         new
                         {
                             Id = 1,
-                            Email = "nick.bergmans@gmail.com",
-                            FirstName = "Nick",
-                            LastName = "Bergmans"
+                            Email = "alice@example.com",
+                            FirstName = "Alice",
+                            LastName = "Wonderland"
                         },
                         new
                         {
                             Id = 2,
-                            Email = "test.tester@gmail.com",
-                            FirstName = "Test",
-                            LastName = "Tester"
+                            Email = "bob@example.com",
+                            FirstName = "Bob",
+                            LastName = "Builder"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "charlie@example.com",
+                            FirstName = "Charlie",
+                            LastName = "Chocolate"
                         });
                 });
 
@@ -88,157 +95,157 @@ namespace _2024_airbnb_herkansing.Migrations
                         {
                             Id = 1,
                             IsCover = false,
-                            Url = "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/4626807/pexels-photo-4626807.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 2,
                             IsCover = false,
-                            Url = "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/4588043/pexels-photo-4588043.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 3,
                             IsCover = false,
-                            Url = "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/3789871/pexels-photo-3789871.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 4,
                             IsCover = false,
-                            Url = "https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/3687061/pexels-photo-3687061.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 5,
                             IsCover = false,
-                            Url = "https://images.pexels.com/photos/1212984/pexels-photo-1212984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/4099585/pexels-photo-4099585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 6,
                             IsCover = true,
                             LocationId = 1,
-                            Url = "https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/2998307/pexels-photo-2998307.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 7,
                             IsCover = true,
                             LocationId = 2,
-                            Url = "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/1459493/pexels-photo-1459493.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 8,
                             IsCover = true,
                             LocationId = 3,
-                            Url = "https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/279746/pexels-photo-279746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 9,
                             IsCover = true,
                             LocationId = 4,
-                            Url = "https://images.pexels.com/photos/2681205/pexels-photo-2681205.jpeg"
+                            Url = "https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 10,
                             IsCover = true,
                             LocationId = 5,
-                            Url = "https://images.pexels.com/photos/5563472/pexels-photo-5563472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/2118125/pexels-photo-2118125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 11,
                             IsCover = true,
                             LocationId = 6,
-                            Url = "https://cdn.cbs.nl/images/6c544435792f56565844344b67534e686f3964532b413d3d/900x450.jpg"
+                            Url = "https://images.pexels.com/photos/4325436/pexels-photo-4325436.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 12,
                             IsCover = true,
                             LocationId = 7,
-                            Url = "https://images.pexels.com/photos/1131573/pexels-photo-1131573.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/2433061/pexels-photo-2433061.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 13,
                             IsCover = true,
                             LocationId = 8,
-                            Url = "https://images.pexels.com/photos/18705895/pexels-photo-18705895/free-photo-of-exterior-of-a-castle.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/1759895/pexels-photo-1759895.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 14,
                             IsCover = true,
                             LocationId = 9,
-                            Url = "https://images.pexels.com/photos/1329510/pexels-photo-1329510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/1282315/pexels-photo-1282315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 15,
                             IsCover = true,
                             LocationId = 10,
-                            Url = "https://images.pexels.com/photos/161123/windmill-water-church-agriculture-161123.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/205827/pexels-photo-205827.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 16,
                             IsCover = false,
                             LocationId = 1,
-                            Url = "https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/2050994/pexels-photo-2050994.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 17,
                             IsCover = false,
                             LocationId = 1,
-                            Url = "https://images.pexels.com/photos/1428348/pexels-photo-1428348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/2179213/pexels-photo-2179213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 18,
                             IsCover = false,
                             LocationId = 5,
-                            Url = "https://images.pexels.com/photos/870170/pexels-photo-870170.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/2194262/pexels-photo-2194262.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 19,
                             IsCover = false,
                             LocationId = 5,
-                            Url = "https://images.pexels.com/photos/984619/pexels-photo-984619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/3117091/pexels-photo-3117091.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 20,
                             IsCover = false,
                             LocationId = 9,
-                            Url = "https://images.pexels.com/photos/4237154/pexels-photo-4237154.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/39866/pexels-photo-39866.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 21,
                             IsCover = false,
                             LocationId = 6,
-                            Url = "https://images.pexels.com/photos/2098913/pexels-photo-2098913.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/235647/pexels-photo-235647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 22,
                             IsCover = false,
                             LocationId = 8,
-                            Url = "https://images.pexels.com/photos/2954929/pexels-photo-2954929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         },
                         new
                         {
                             Id = 23,
                             IsCover = false,
                             LocationId = 10,
-                            Url = "https://images.pexels.com/photos/2449549/pexels-photo-2449549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                            Url = "https://images.pexels.com/photos/1961457/pexels-photo-1961457.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         });
                 });
 
@@ -276,42 +283,42 @@ namespace _2024_airbnb_herkansing.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 19,
+                            Age = 30,
                             AvatarId = 1,
-                            FirstName = "Ren",
-                            LastName = "Traveller"
+                            FirstName = "John",
+                            LastName = "Doe"
                         },
                         new
                         {
                             Id = 2,
-                            Age = 29,
+                            Age = 25,
                             AvatarId = 2,
-                            FirstName = "Bob",
-                            LastName = "Bouwer"
+                            FirstName = "Jane",
+                            LastName = "Smith"
                         },
                         new
                         {
                             Id = 3,
-                            Age = 35,
+                            Age = 40,
                             AvatarId = 3,
-                            FirstName = "Charles ",
-                            LastName = "Xavier"
+                            FirstName = "Jim",
+                            LastName = "Bean"
                         },
                         new
                         {
                             Id = 4,
-                            Age = 45,
+                            Age = 35,
                             AvatarId = 4,
-                            FirstName = "Peter ",
-                            LastName = "Parker"
+                            FirstName = "Jill",
+                            LastName = "Hill"
                         },
                         new
                         {
                             Id = 5,
-                            Age = 26,
+                            Age = 28,
                             AvatarId = 5,
-                            FirstName = "Iron ",
-                            LastName = "de Man"
+                            FirstName = "Jack",
+                            LastName = "Black"
                         });
                 });
 
@@ -360,132 +367,132 @@ namespace _2024_airbnb_herkansing.Migrations
                         new
                         {
                             Id = 1,
-                            Description = "Brand new hotel in the heart of the city",
-                            Features = 36,
+                            Description = "Modern apartment in the city center",
+                            Features = 12,
                             LandlordId = 1,
                             NumberOfGuests = 4,
-                            PricePerDay = 74.99f,
+                            PricePerDay = 80f,
                             Rooms = 2,
-                            SubTitle = "Just steps away from the old city center",
-                            Title = "New City Hotel",
-                            Type = 4
+                            SubTitle = "Close to all amenities",
+                            Title = "City Center Apartment",
+                            Type = 0
                         },
                         new
                         {
                             Id = 2,
-                            Description = "Detached house in a peaceful neighborhood surrounded by nature",
-                            Features = 6,
-                            LandlordId = 1,
+                            Description = "Cozy cottage in the countryside",
+                            Features = 34,
+                            LandlordId = 2,
                             NumberOfGuests = 6,
-                            PricePerDay = 50f,
+                            PricePerDay = 120f,
                             Rooms = 3,
-                            SubTitle = "Enjoy the beautiful greenery in this serene environment",
-                            Title = "Detached House",
-                            Type = 5
+                            SubTitle = "Peaceful and quiet",
+                            Title = "Countryside Cottage",
+                            Type = 1
                         },
                         new
                         {
                             Id = 3,
-                            Description = "Large old house with a stunning lakeside location",
-                            Features = 3,
-                            LandlordId = 2,
+                            Description = "Beachfront villa with stunning views",
+                            Features = 20,
+                            LandlordId = 3,
                             NumberOfGuests = 8,
-                            PricePerDay = 88.5f,
+                            PricePerDay = 250f,
                             Rooms = 4,
-                            SubTitle = "A beautiful 19th-century house by the water",
-                            Title = "Lakeside Villa",
+                            SubTitle = "Steps from the beach",
+                            Title = "Beachfront Villa",
                             Type = 5
                         },
                         new
                         {
                             Id = 4,
-                            Description = "Room in an apartment complex",
+                            Description = "Single room in a shared house",
                             Features = 8,
-                            LandlordId = 3,
+                            LandlordId = 4,
                             NumberOfGuests = 2,
-                            PricePerDay = 58.33f,
+                            PricePerDay = 40f,
                             Rooms = 1,
-                            SubTitle = "Double room in Barcelona",
-                            Title = "Double Room",
+                            SubTitle = "Affordable and convenient",
+                            Title = "Shared House Room",
                             Type = 3
                         },
                         new
                         {
                             Id = 5,
-                            Description = "Luxurious villa with a pool and spacious garden",
+                            Description = "Luxury mansion with private pool",
                             Features = 28,
-                            LandlordId = 4,
-                            NumberOfGuests = 15,
-                            PricePerDay = 399.5f,
-                            Rooms = 10,
-                            SubTitle = "Perfect villa for a wonderful vacation with friends or family",
-                            Title = "Luxury Villa Milan",
+                            LandlordId = 5,
+                            NumberOfGuests = 10,
+                            PricePerDay = 450f,
+                            Rooms = 5,
+                            SubTitle = "Exclusive and luxurious",
+                            Title = "Luxury Mansion",
                             Type = 5
                         },
                         new
                         {
                             Id = 6,
-                            Description = "Family home for starters in Almere",
-                            Features = 2,
-                            LandlordId = 5,
+                            Description = "Charming townhouse in a historic district",
+                            Features = 4,
+                            LandlordId = 1,
                             NumberOfGuests = 4,
-                            PricePerDay = 25f,
-                            Rooms = 3,
-                            SubTitle = "A good starter home with easy commute",
-                            Title = "Almere Townhouse",
+                            PricePerDay = 90f,
+                            Rooms = 2,
+                            SubTitle = "Experience the history",
+                            Title = "Historic Townhouse",
                             Type = 5
                         },
                         new
                         {
                             Id = 7,
-                            Description = "Villa overlooking the coast in Kijkduin",
-                            Features = 8,
-                            LandlordId = 1,
-                            NumberOfGuests = 8,
-                            PricePerDay = 66.65f,
-                            Rooms = 4,
-                            SubTitle = "Perfect for summer vacation in the Netherlands",
-                            Title = "Beachside Villa",
+                            Description = "Modern chalet with mountain views",
+                            Features = 10,
+                            LandlordId = 2,
+                            NumberOfGuests = 6,
+                            PricePerDay = 200f,
+                            Rooms = 3,
+                            SubTitle = "Perfect for a getaway",
+                            Title = "Mountain Chalet",
                             Type = 2
                         },
                         new
                         {
                             Id = 8,
-                            Description = "Historic castle in the inland of France",
-                            Features = 18,
-                            LandlordId = 5,
-                            NumberOfGuests = 12,
-                            PricePerDay = 420.1f,
-                            Rooms = 8,
-                            SubTitle = "Stay here like royalty",
-                            Title = "Castle in France",
-                            Type = 5
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Description = "Luxurious room in the most beautiful city in the Netherlands",
+                            Description = "Cozy studio in the heart of the city",
                             Features = 4,
-                            LandlordId = 1,
-                            NumberOfGuests = 5,
-                            PricePerDay = 500f,
-                            Rooms = 2,
-                            SubTitle = "Explore Amsterdam and enjoy the city's offerings",
-                            Title = "Amsterdam Apartment",
+                            LandlordId = 3,
+                            NumberOfGuests = 2,
+                            PricePerDay = 60f,
+                            Rooms = 1,
+                            SubTitle = "Ideal for solo travelers",
+                            Title = "City Studio",
                             Type = 0
                         },
                         new
                         {
-                            Id = 10,
-                            Description = "Old restored windmill with 4 rooms",
-                            Features = 12,
-                            LandlordId = 2,
+                            Id = 9,
+                            Description = "Spacious house with garden",
+                            Features = 34,
+                            LandlordId = 4,
                             NumberOfGuests = 8,
-                            PricePerDay = 140f,
+                            PricePerDay = 150f,
                             Rooms = 4,
-                            SubTitle = "Authentic windmill used for cheese making",
-                            Title = "Old Windmill",
-                            Type = 1
+                            SubTitle = "Perfect for families",
+                            Title = "Family House",
+                            Type = 5
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Historic castle with modern amenities",
+                            Features = 28,
+                            LandlordId = 5,
+                            NumberOfGuests = 12,
+                            PricePerDay = 350f,
+                            Rooms = 6,
+                            SubTitle = "Live like royalty",
+                            Title = "Modern Castle",
+                            Type = 5
                         });
                 });
 
@@ -526,7 +533,7 @@ namespace _2024_airbnb_herkansing.Migrations
                             Id = 1,
                             CustomerId = 1,
                             Discount = 0.1f,
-                            EndDate = new DateTime(2023, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2024, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 1,
                             StartDate = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -535,27 +542,36 @@ namespace _2024_airbnb_herkansing.Migrations
                             Id = 2,
                             CustomerId = 2,
                             Discount = 0f,
-                            EndDate = new DateTime(2023, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LocationId = 2,
                             StartDate = new DateTime(2024, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
-                            CustomerId = 1,
+                            CustomerId = 3,
                             Discount = 0.2f,
-                            EndDate = new DateTime(2023, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LocationId = 1,
+                            EndDate = new DateTime(2024, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LocationId = 3,
                             StartDate = new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
-                            CustomerId = 2,
+                            CustomerId = 1,
                             Discount = 0.15f,
-                            EndDate = new DateTime(2023, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LocationId = 1,
+                            EndDate = new DateTime(2024, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LocationId = 4,
                             StartDate = new DateTime(2024, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CustomerId = 2,
+                            Discount = 0.1f,
+                            EndDate = new DateTime(2024, 9, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LocationId = 5,
+                            StartDate = new DateTime(2024, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
