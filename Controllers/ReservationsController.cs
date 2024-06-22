@@ -12,43 +12,40 @@ namespace _2024_airbnb_herkansing.Controllers
     [ApiController]
     public class ReservationsController : ControllerBase
     {
-        private readonly _2024_airbnb_herkansingContext _context;
         private readonly IReservationService _reservationService;
         private readonly IMapper _mapper;
 
-        public ReservationsController(IReservationService reservationService, IMapper mapper, _2024_airbnb_herkansingContext context)
+        public ReservationsController(IReservationService reservationService, IMapper mapper)
         {
             _reservationService = reservationService;
             _mapper = mapper;
-            _context = context;
         }
 
         /// <summary>
-        /// This POST method creates a reservation using the input of the DTO object. This is for week assignment 7.
-        ///</summary>
-        ///<remarks>
-        /// Sample request:
-        ///
-        ///     GET /api/Reservations/
-        ///
-        /// </remarks>
-        /// <param name="reservationRequest"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns>Saves a new reservation in the database</returns>
-        /// <response code="200">The reservation has been succesfully completed</response>
-        /// <response code="500">Internal server is not working properly</response>
+        /// Creates a new reservation.
+        /// </summary>
+        /// <param name="reservationRequest">The reservation request DTO.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The created reservation response DTO.</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ReservationReponseDTO> MakeReservationAsync(ReservationRequestDTO reservationRequest, CancellationToken cancellationToken)
+        public async Task<IActionResult> MakeReservationAsync([FromBody] ReservationRequestDTO reservationRequest, CancellationToken cancellationToken)
         {
-            return await _reservationService.MakeReservationAsync(reservationRequest, cancellationToken);
+            try
+            {
+                var reservationResponse = await _reservationService.MakeReservationAsync(reservationRequest, cancellationToken);
+                if (reservationResponse == null)
+                {
+                    return Conflict("The selected dates are not available.");
+                }
+                return Ok(reservationResponse);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while creating the reservation.");
+            }
         }
-
-
-
-
-
-        
     }
 }

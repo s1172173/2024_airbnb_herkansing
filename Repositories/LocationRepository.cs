@@ -22,19 +22,31 @@ namespace _2024_airbnb_herkansing.Repositories
         // Retrieves all locations asynchronously
         public async Task<IEnumerable<Location>> GetAllLocationsAsync(CancellationToken cancellationToken)
         {
-            return await _context.Location.Include(l => l.Images).Include(l => l.Landlord).ToListAsync(cancellationToken);
+            return await _context.Location
+                .Include(l => l.Images)
+                .Include(l => l.Landlord)
+                    .ThenInclude(landlord => landlord.Avatar)
+                .ToListAsync(cancellationToken);
         }
 
         // Retrieves all locations asynchronously
         public async Task<IEnumerable<Location>> GetLocations(CancellationToken cancellationToken)
         {
-            return await _context.Location.Include(l => l.Images).Include(l => l.Landlord).ToListAsync(cancellationToken);
+            return await _context.Location
+                .Include(l => l.Images)
+                .Include(l => l.Landlord)
+                    .ThenInclude(landlord => landlord.Avatar)
+                .ToListAsync(cancellationToken);
         }
 
         // Retrieves a location by its ID asynchronously
         public async Task<Location> GetLocationByIdAsync(int id, CancellationToken cancellationToken)
         {
-            return await _context.Location.FindAsync(id);
+            return await _context.Location
+                .Include(l => l.Images)
+                .Include(l => l.Landlord)
+                    .ThenInclude(landlord => landlord.Avatar)
+                .FirstOrDefaultAsync(l => l.Id == id, cancellationToken);
         }
 
         // Retrieves unavailable dates for a specific location asynchronously

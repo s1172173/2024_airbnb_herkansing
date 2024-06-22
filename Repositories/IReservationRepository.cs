@@ -9,5 +9,6 @@ namespace _2024_airbnb_herkansing.Repositories
         public Task<Reservation> GetReservationByIdAsync(int id, CancellationToken cancellationToken);
 
         public Task<Reservation> MakeReservationAsync(ReservationRequestDTO reservationRequest, CancellationToken cancellationToken);
+        public Task<UnAvailableDatesDTO> GetUnavailableDatesAsync(int locationId, CancellationToken cancellationToken);
     }
 }
