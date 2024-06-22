@@ -17,6 +17,13 @@ namespace _2024_airbnb_herkansing.Services
             _mapper = mapper;
         }
 
+        // Retrieves all locations without related entities asynchronously
+        public async Task<IEnumerable<Location>> GetAllLocationsStandard(CancellationToken cancellationToken)
+        {
+            return await _repository.GetAllLocationsStandard(cancellationToken);
+
+        }
+
         // Retrieves all locations asynchronously
         public async Task<IEnumerable<Location>> GetAllLocationsAsync(CancellationToken cancellationToken)
         {
@@ -36,6 +43,12 @@ namespace _2024_airbnb_herkansing.Services
             return _mapper.Map<IEnumerable<Location>, IEnumerable<LocationDTO>>(locations);
         }
 
+     /*   // Retrieves all locations as DTOs asynchronously
+        public async Task<IEnumerable<LocationDTO>> GetLocations(CancellationToken cancellationToken)
+        {
+            return await _repository.GetAllLocationsAsync(cancellationToken);
+        }
+*/
         // Retrieves detailed information for a specific location asynchronously
         public async Task<ActionResult<GetDetailsDTO>> GetLocationDetails(int id, CancellationToken cancellationToken)
         {

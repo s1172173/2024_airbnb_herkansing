@@ -5,10 +5,6 @@ using _2024_airbnb_herkansing.Services;
 using AutoMapper;
 using _2024_airbnb_herkansing.Models.DTOs;
 
-
-// All controllers are currently unable to return the data in the correct DTO format  due to a configuration error, which remains unresolved.
-// This issue causes the Airbnb site to not respond properly to any requests.
-// The code can still be checked, but testing it on the site is currently not possible.
 namespace _2024_airbnb_herkansing.Controllers
 {
     [ApiVersion("1.0")]
